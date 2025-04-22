@@ -1,4 +1,3 @@
-// src/pages/Shop.jsx
 import React, { useEffect, useState } from "react";
 
 const Shop = () => {
@@ -10,20 +9,19 @@ const Shop = () => {
     fetch("http://localhost:5001/products")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.products || []); // Expecting { products: [...] }
+        setProducts(data.products || []);
       })
       .catch((err) => console.error("❌ Failed to fetch products:", err));
   }, []);
-  
 
   const filteredProducts = products.filter((product) => {
-    const nameMatch = selectedCategory
+    const categoryMatch = selectedCategory
       ? product.name.toLowerCase().includes(selectedCategory.toLowerCase())
       : true;
     const vendorMatch = selectedVendor
       ? product.description.toLowerCase().includes(selectedVendor.toLowerCase())
       : true;
-    return nameMatch && vendorMatch;
+    return categoryMatch && vendorMatch;
   });
 
   const categories = [
@@ -44,38 +42,27 @@ const Shop = () => {
       <h1>Shop Our Collection</h1>
       <p>Browse products from local artisans and makers. Tap a product to check out via our secure Square store.</p>
 
-      <div className="shop-filters">
-        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
+      <div className="shop-filters" style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "2rem" }}>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          disabled={selectedVendor !== ""}
+          style={{ padding: "0.5rem", fontSize: "1rem", borderRadius: "6px", minWidth: "200px" }}
+        >
           <option value="">All Categories</option>
           {categories.map((c) => (
             <option key={c} value={c}>{c}</option>
           ))}
         </select>
+
         <select
-  value={selectedCategory}
-  onChange={(e) => setSelectedCategory(e.target.value)}
-  disabled={selectedVendor !== ""}
->
-  <option value="">All Categories</option>
-  {categories.map((c) => (
-    <option key={c} value={c}>{c}</option>
-  ))}
-</select>
-
-<select
-  value={selectedVendor}
-  onChange={(e) => {
-    setSelectedVendor(e.target.value);
-    setSelectedCategory(""); // Reset category when vendor is selected
-  }}
->
-  <option value="">All Vendors</option>
-  {vendors.map((v) => (
-    <option key={v} value={v}>{v}</option>
-  ))}
-</select>
-
-        <select value={selectedVendor} onChange={(e) => setSelectedVendor(e.target.value)}>
+          value={selectedVendor}
+          onChange={(e) => {
+            setSelectedVendor(e.target.value);
+            setSelectedCategory(""); // reset category
+          }}
+          style={{ padding: "0.5rem", fontSize: "1rem", borderRadius: "6px", minWidth: "200px" }}
+        >
           <option value="">All Vendors</option>
           {vendors.map((v) => (
             <option key={v} value={v}>{v}</option>
@@ -85,7 +72,7 @@ const Shop = () => {
 
       <div className="products-container">
         {filteredProducts.length === 0 ? (
-          <p>No products found.</p>
+          <p style={{ textAlign: "center" }}>No products found.</p>
         ) : (
           filteredProducts.map((product) => (
             <div className="product-card" key={product.id}>
