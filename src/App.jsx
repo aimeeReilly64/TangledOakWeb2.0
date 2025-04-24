@@ -16,8 +16,6 @@ import VendorLogin from "./pages/VendorLogin"; // Optional, only if you have thi
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import './css/styles.css';
-
 const App = () => {
   return (
     <Router>

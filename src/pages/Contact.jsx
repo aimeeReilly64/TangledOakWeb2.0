@@ -1,119 +1,124 @@
-// src/pages/Shop.jsx
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "../css/styles.css"; // Adjust path if needed
+import React, { useState } from "react";
+import "../css/styles.css";
 
-const Shop = () => {
-  const [vendors, setVendors] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  // Sample mockup fetch functions — replace with Firebase or actual API calls
-  useEffect(() => {
-    fetchVendors();
-    fetchCategories();
-    fetchProducts();
-  }, []);
-
-  const fetchVendors = async () => {
-    // Replace this with Firestore call later
-    setVendors(["Vendor A", "Vendor B", "Vendor C"]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const fetchCategories = async () => {
-    // Replace this with Firestore call later
-    setCategories(["Jewelry", "Home Decor", "Apparel"]);
-  };
-
-  const fetchProducts = async () => {
-    // Replace this with Firestore call later
-    setProducts([
-      { id: 1, name: "Handmade Necklace", price: "$30" },
-      { id: 2, name: "Crochet Basket", price: "$25" },
-    ]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here (e.g., send email, API request)
+    alert("Your message has been sent!");
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
-    <>
-      {/* Header */}
-      <div className="header">
-        <Link to="/">
-          <img src="/views/images/wordsLogo2.png" height="105" alt="Tangled Oak Word Logo" />
-        </Link>
-        <Link to="/" className="nav-link">Home</Link>
-        <Link to="/shop" className="nav-link">Shop</Link>
-        <Link to="/about" className="nav-link">About Us</Link>
-        <Link to="/contact" className="nav-link">Contact</Link>
-
-        <form className="search-bar" onSubmit={(e) => e.preventDefault()}>
-          <input type="text" placeholder="Search" id="search-input" />
-        </form>
-
-        <Link to="/cart">
-          <img src="/views/images/cart.png" height="40" alt="Cart" />
-        </Link>
-      </div>
-
-      {/* Sidebar */}
-      <div className="sidebar">
-        <li><Link to="/" className="side-nav-link">Home</Link></li>
-        <h2>Shop by Vendor</h2>
-        <div className="vendors-container">
-          {vendors.length ? vendors.map((vendor, idx) => (
-            <div key={idx}>{vendor}</div>
-          )) : "Loading vendors..."}
-        </div>
-        <li><Link to="/shop" className="side-nav-link">Shop</Link></li>
-        <li><Link to="/about" className="side-nav-link">About Us</Link></li>
-        <li><Link to="/contact" className="side-nav-link">Contact</Link></li>
-      </div>
-
+    <div className="contact-container">
       {/* Main Content */}
       <div className="main-content">
-        <h1>The Tangled Oak Shop</h1>
+        <div className="context-box">
+          <h1>Contact Us</h1>
+          <p>If you have any questions or comments, please don't hesitate to contact us.</p>
+          <p>Tangled Oak Craft Collective</p>
+          <p>150 Oak St W, North Bay, ON</p>
+          <p>Phone: (705) 201-2300</p>
+          <p>Email: <a href="mailto:store@tangledoak.ca">store@tangledoak.ca</a></p>
+        </div>
 
         <div className="context-box">
-          <h2>Shop by Category</h2>
-          <div className="categories-container">
-            {categories.length ? categories.map((cat, idx) => (
-              <div key={idx}>{cat}</div>
-            )) : "Loading categories..."}
-          </div>
+          <h2>Want to be part of the Tangled Oak + Craft Collective?</h2>
+          <p>
+            The Tangled Oak + Craft Collective is a community-driven organization dedicated to fostering creativity,
+            innovation, and community among the younger generations. Our mission is to create a space where young
+            people can learn, grow, and connect with one another through their passion for crafting, DIY projects, and
+            creative expression.
+          </p>
+          <p>
+            We invite you to join us on our journey towards a brighter future, where every child can thrive and contribute
+            to the world of crafting and creativity.
+          </p>
+          <p>Fill out this form and we will get back to you with more information</p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdE19LHG3M9uilKeLxM3l8Xit1jqEb3hiP5PCqCd3merF6LHA/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button"
+          >
+            Vendor Form
+          </a>
+        </div>
 
-          <h2>Newest Products</h2>
-          <div className="products-container">
-            {products.length ? products.map((product) => (
-              <div key={product.id}>
-                <p>{product.name}</p>
-                <p>{product.price}</p>
-              </div>
-            )) : "Loading products..."}
-          </div>
+        {/* Contact Form */}
+        <div className="context-box">
+          <h2>Contact Form</h2>
+          <form onSubmit={handleSubmit} className="contact-form">
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="message">Message:</label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows="4"
+                required
+              />
+            </div>
+            <button type="submit" className="button">
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        {/* Google Map */}
+        <div className="context-box">
+          <h2>Find Us on the Map</h2>
+          <iframe
+            className="map"
+            width="80%"
+            style={{ border: "2px solid #203a13" }}
+            loading="lazy"
+            allowFullScreen
+            title="Tangled Oak Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2755.934228632341!2d-79.46534059999999!3d46.311143699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d29aa9cbd52da61%3A0x5ba29b1fbf8394f9!2s150%20Oak%20St%20W%2C%20North%20Bay%2C%20ON%20P1B%202S7!5e0!3m2!1sen!2sca!4v1742343151470!5m2!1sen!2sca"
+          ></iframe>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-section social-media">
-            <h2>Follow Us</h2>
-            <div className="social-icons">
-              <a href="https://www.facebook.com/profile.php?id=61556577491923">
-                <img src="/views/images/facebook.png" alt="Facebook" />
-              </a>
-              <a href="https://www.instagram.com/tangledoakcraft/">
-                <img src="/views/images/instagram.png" alt="Instagram" />
-              </a>
-              <a href="https://www.pinterest.com/tangledoakcraft">
-                <img src="/views/images/pinterest.png" alt="Pinterest" />
-              </a>
-            </div>
-          </div>
-          <p style={{ fontSize: "8px" }}>&copy; 2024 The Tangled Oak + Craft Collective. All Rights Reserved.</p>
-        </div>
-      </footer>
-    </>
+      {/* End of Main Content */}
+      </div>
   );
 };
 
-export default Shop;
+export default Contact;
