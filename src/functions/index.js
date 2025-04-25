@@ -17,10 +17,8 @@ exports.approveVendor = functions.https.onRequest((req, res) => {
     }
 
     try {
-      // Set the custom claim "role": "vendor"
       await admin.auth().setCustomUserClaims(uid, { role: "vendor" });
 
-      // Optional: update Firestore to indicate they’ve been approved
       await admin.firestore().collection("vendorRequests").doc(uid).update({
         approved: true,
         approvedAt: admin.firestore.FieldValue.serverTimestamp(),

@@ -1,12 +1,27 @@
+// src/pages/Shop.jsx
 import "../css/styles.css";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import ProductModal from "../components/ProductModal";
+import { useNavigate } from "react-router-dom";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedVendor, setSelectedVendor] = useState("");
   const [error, setError] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [activeProduct, setActiveProduct] = useState(null);
+  const navigate = useNavigate();
+  const openModal = (product) => {
+    setActiveProduct(product);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setActiveProduct(null);
+    setModalIsOpen(false);
+  };
 
   const categorizeProduct = (product) => {
     const name = (product.name || "").toLowerCase();
@@ -29,7 +44,7 @@ const Shop = () => {
     const now = new Date();
     const created = new Date(createdAt);
     const daysDiff = (now - created) / (1000 * 60 * 60 * 24);
-    return daysDiff <= 30; // Show 'New!' for products added in the last 30 days
+    return daysDiff <= 30;
   };
 
   useEffect(() => {
@@ -39,16 +54,13 @@ const Shop = () => {
         return response.json();
       })
       .then((data) => {
-        const enriched = data.products.map((product) => {
-          return {
-            ...product,
-            category_name: categorizeProduct(product),
-            created_at: product.created_at || new Date("2024-04-01"),
-          };
-        });
+        const enriched = data.products.map((product) => ({
+          ...product,
+          category_name: categorizeProduct(product),
+          created_at: product.created_at || new Date("2024-04-01"),
+        }));
 
         enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
         setProducts(enriched);
       })
       .catch((error) => {
@@ -59,13 +71,11 @@ const Shop = () => {
 
   const filteredProducts = products.filter((product) => {
     const categoryMatch = selectedCategory
-      ? product.category_name && product.category_name.toLowerCase() === selectedCategory.toLowerCase()
+      ? product.category_name.toLowerCase() === selectedCategory.toLowerCase()
       : true;
-
     const vendorMatch = selectedVendor
       ? product.description.toLowerCase().includes(selectedVendor.toLowerCase())
       : true;
-
     return categoryMatch && vendorMatch;
   });
 
@@ -119,14 +129,26 @@ const Shop = () => {
                   <img src={product.image_url} alt={product.name} className="product-image" />
                   <h3 className="product-name">{product.name}</h3>
                   <p className="product-price">${product.price.toFixed(2)} {product.currency}</p>
-                  <a href={product.product_url} target="_blank" rel="noopener noreferrer" className="checkout-button">Buy on Square</a>
+              
+
+<button onClick={() => navigate(`/product/${product.id}`)} className="checkout-button">
+  View Product
+</button>
+
                 </div>
               ))
           )}
         </div>
       </div>
+
+      <ProductModal
+        isOpen={modalIsOpen}
+        product={activeProduct}
+        onClose={closeModal}
+      />
     </>
   );
 };
 
 export default Shop;
+

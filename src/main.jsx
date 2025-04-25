@@ -1,7 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './css/styles.css'; // ✅ Import global styles here
+// src/main.jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { CartProvider } from "./context/CartContext";
+import "./css/styles.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <CartProvider>
+    <App />
+  </CartProvider>
+);
