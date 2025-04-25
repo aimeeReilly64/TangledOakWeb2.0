@@ -116,9 +116,16 @@ const About = () => {
 
       {/* Business Hours Section */}
       <div className="context-box">
-        <h2>Hours of Operation</h2>
-        <p>Monday: 10 AM - 1 PM<br />Tuesday: CLOSED<br />Wednesday: 11 AM - 3 PM<br />Thursday: 10 AM - 1 PM<br />Friday: 11 AM - 3 PM<br />Saturday: 10 AM - 3 PM<br />Sunday: 12 PM - 3 PM</p>
-        <h3>Where you can find us</h3>
+      <p className="hours-text">
+              Monday: 11 AM - 4 PM<br />
+              Tuesday: 11 AM -4 PM<br />
+              Wednesday: 11 AM - 4 PM<br />
+              Thursday: 11 AM - 4 PM<br />
+              Friday: 11 AM - 4 PM<br />
+              Saturday: 10 AM - 3 PM<br />
+              Sunday: CLOSED 
+            </p><br/>
+             <h3>Where you can find us</h3>
         <p>150 Oak Street W<br />North Bay, ON</p>
         <p>Email: store@tangledoak.ca<br />Phone: (705) 201-2300</p>
       </div>

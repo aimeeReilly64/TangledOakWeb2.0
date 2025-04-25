@@ -77,13 +77,13 @@ const Home = () => {
           <div className="context-box">
             <h2>Hours of Operation</h2>
             <p className="hours-text">
-              Monday: 10 AM - 1 PM<br />
-              Tuesday: CLOSED<br />
-              Wednesday: 11 AM - 3 PM<br />
-              Thursday: 10 AM - 1 PM<br />
-              Friday: 11 AM - 3 PM<br />
+              Monday: 11 AM - 4 PM<br />
+              Tuesday: 11 AM -4 PM<br />
+              Wednesday: 11 AM - 4 PM<br />
+              Thursday: 11 AM - 4 PM<br />
+              Friday: 11 AM - 4 PM<br />
               Saturday: 10 AM - 3 PM<br />
-              Sunday: 12 AM - 3 PM
+              Sunday: CLOSED <br/>
             </p>
           </div> 
 
