@@ -1,5 +1,6 @@
 import "../css/styles.css";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -7,33 +8,64 @@ const Shop = () => {
   const [selectedVendor, setSelectedVendor] = useState("");
   const [error, setError] = useState(null);
 
+  const categorizeProduct = (product) => {
+    const name = (product.name || "").toLowerCase();
+    const desc = (product.description || "").toLowerCase();
+
+    if (name.includes("earring") || name.includes("necklace") || name.includes("ring")) return "Jewelry";
+    if (name.includes("sweater") || name.includes("hat") || name.includes("shirt") || name.includes("shawl") || name.includes("beret")) return "Clothing";
+    if (name.includes("soap") || name.includes("scrub") || name.includes("bath") || name.includes("body")) return "Bath + Beauty";
+    if (name.includes("home") || desc.includes("decor") || name.includes("pillow") || name.includes("sign")) return "Home Decor";
+    if (name.includes("knife") || name.includes("axe") || name.includes("dagger") || name.includes("blade")) return "Knives + Axes";
+    if (name.includes("crystal") || name.includes("stone") || name.includes("gem")) return "Crystals";
+    if (name.includes("kids") || name.includes("baby")) return "Baby + Kids";
+    if (name.includes("card") || name.includes("gift") || name.includes("tag")) return "Cards + Gifting Supplies";
+    if (name.includes("craft") || name.includes("bead") || name.includes("wire") || name.includes("pom")) return "Crafting";
+
+    return "Uncategorized";
+  };
+
+  const isNewProduct = (createdAt) => {
+    const now = new Date();
+    const created = new Date(createdAt);
+    const daysDiff = (now - created) / (1000 * 60 * 60 * 24);
+    return daysDiff <= 30; // Show 'New!' for products added in the last 30 days
+  };
+
   useEffect(() => {
-    fetch('/products')
+    fetch(`${import.meta.env.VITE_API_URL}/products`)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
       })
-   
-          console.log(data); // Check if the categories are there
-          setProducts(data.products);
-        })
-    
+      .then((data) => {
+        const enriched = data.products.map((product) => {
+          return {
+            ...product,
+            category_name: categorizeProduct(product),
+            created_at: product.created_at || new Date("2024-04-01"),
+          };
+        });
+
+        enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+        setProducts(enriched);
+      })
       .catch((error) => {
-        console.error('❌ Fetch error:', error);
-        setError('Failed to load products. Please try again later.');
+        console.error("❌ Fetch error:", error);
+        setError("Failed to load products. Please try again later.");
       });
-  }, [];
+  }, []);
 
   const filteredProducts = products.filter((product) => {
     const categoryMatch = selectedCategory
-      ? product.category && product.category.toLowerCase() === selectedCategory.toLowerCase()
+      ? product.category_name && product.category_name.toLowerCase() === selectedCategory.toLowerCase()
       : true;
 
     const vendorMatch = selectedVendor
       ? product.description.toLowerCase().includes(selectedVendor.toLowerCase())
       : true;
+
     return categoryMatch && vendorMatch;
   });
 
@@ -52,87 +84,44 @@ const Shop = () => {
 
   return (
     <>
-      <head>
+      <Helmet>
         <title>Shop Handmade Crafts | Tangled Oak + Craft Collective</title>
-        <meta
-          name="description"
-          content="Discover a wide range of handmade crafts from local artisans at Tangled Oak + Craft Collective. Explore products like jewelry, accessories, home decor, and more!"
-        />
-        <meta name="keywords" content="handmade crafts, local artisans, jewelry, accessories, home decor, Tangled Oak + Craft Collective, buy handmade products" />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:title" content="Shop Handmade Crafts | Tangled Oak + Craft Collective" />
-        <meta
-          property="og:description"
-          content="Discover a wide range of handmade crafts from local artisans at Tangled Oak + Craft Collective. Explore products like jewelry, accessories, home decor, and more!"
-        />
-        <meta property="og:url" content="https://www.tangledoak.ca/shop" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:title" content="Shop Handmade Crafts | Tangled Oak + Craft Collective" />
-        <meta
-          name="twitter:description"
-          content="Discover a wide range of handmade crafts from local artisans at Tangled Oak + Craft Collective. Explore products like jewelry, accessories, home decor, and more!"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-      </head>
+        <meta name="description" content="Discover handmade crafts from local artisans." />
+      </Helmet>
 
       <div className="shop-page">
         <h1>Shop Our Collection</h1>
         <p>Browse products from local artisans and makers. Tap a product to check out via our secure Square store.</p>
 
-        <div className="shop-filters" style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "2rem" }}>
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            disabled={selectedVendor !== ""}
-            style={{ padding: "0.5rem", fontSize: "1rem", borderRadius: "6px", minWidth: "200px" }}
-          >
+        <div className="shop-filters">
+          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} disabled={selectedVendor !== ""}>
             <option value="">All Categories</option>
-            {categories.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
+            {categories.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
 
-          <select
-            value={selectedVendor}
-            onChange={(e) => {
-              setSelectedVendor(e.target.value);
-              setSelectedCategory(""); // Reset category when vendor selected
-            }}
-            style={{ padding: "0.5rem", fontSize: "1rem", borderRadius: "6px", minWidth: "200px" }}
-          >
+          <select value={selectedVendor} onChange={(e) => { setSelectedVendor(e.target.value); setSelectedCategory(""); }}>
             <option value="">All Vendors</option>
-            {vendors.map((v) => (
-              <option key={v} value={v}>{v}</option>
-            ))}
+            {vendors.map((v) => <option key={v} value={v}>{v}</option>)}
           </select>
         </div>
 
         {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
         <div className="products-container">
-          {filteredProducts.length === 0 ? (
-            <p style={{ textAlign: "center" }}>No products found.</p>
+          {filteredProducts.filter((p) => p.product_url && p.product_url !== "#").length === 0 ? (
+            <p style={{ textAlign: "center" }}>No available products found.</p>
           ) : (
-            filteredProducts.map((product) => (
-              <div className="product-card" key={product.id}>
-                <img
-                  src={product.image_url}
-                  alt={product.name}
-                  className="product-image"
-                />
-                <h3 className="product-name">{product.name}</h3>
-                <p className="product-description">{product.description}</p>
-                <p className="product-price">${product.price.toFixed(2)} {product.currency}</p>
-                <a
-                  href={product.product_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="checkout-button"
-                >
-                  Buy on Square
-                </a>
-              </div>
-            ))
+            filteredProducts
+              .filter((p) => p.product_url && p.product_url !== "#")
+              .map((product) => (
+                <div className="product-card" key={product.id}>
+                  {isNewProduct(product.created_at) && <div className="new-badge">New!</div>}
+                  <img src={product.image_url} alt={product.name} className="product-image" />
+                  <h3 className="product-name">{product.name}</h3>
+                  <p className="product-price">${product.price.toFixed(2)} {product.currency}</p>
+                  <a href={product.product_url} target="_blank" rel="noopener noreferrer" className="checkout-button">Buy on Square</a>
+                </div>
+              ))
           )}
         </div>
       </div>
