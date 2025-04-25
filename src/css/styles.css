@@ -554,3 +554,124 @@ h3 {
   font-size: 14px;
   background-color: #f8f8f8;
 }
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 18px;
+  }
+
+  .hero-img {
+    max-width: 40%;
+  }
+
+  .product-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-info {
+    max-width: 100%;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 16px;
+  }
+
+  .button,
+  .checkout-button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .hero-img {
+    max-width: 80%;
+  }
+
+  .product-name {
+    font-size: 0.9rem;
+  }
+
+  .product-price {
+    font-size: 0.85rem;
+  }
+
+  .product-tabs button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .nav-search {
+    max-width: 180px;
+    font-size: 12px;
+  }
+}
+.vendor-button {
+  background-color: #abc29c;
+  color: #203a13;
+  font-weight: bold;
+  border: 1px solid #2D5C47;
+  padding: 10px 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.vendor-button:hover {
+  background-color: #87a17a;
+}
+h1 {
+  font-size: clamp(1.25rem, 2vw, 2rem);
+}
+.feature-img {
+  width: 100%;
+  max-width: 700px; /* or whatever size looks best for your layout */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid #2D5C47;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+@media screen and (max-width: 480px) {
+  .feature-img {
+    max-width: 100%;
+  }
+}
+.feature-img {
+  margin-bottom: 1.5rem;
+}
+@media screen and (max-width: 900px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .header-logo {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-links a {
+    padding: 8px 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
