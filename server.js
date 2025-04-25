@@ -4,8 +4,7 @@ import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
 import * as dotenv from "dotenv";
-import square from "square";
-const { Client, Environment } = square;
+import { Client, Environment } from "@square/square";
 
 dotenv.config();
 
