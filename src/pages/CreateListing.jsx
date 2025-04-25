@@ -4,7 +4,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
-import "../input.css";
+import "../css/styles.css";
 
 const CreateListing = () => {
   const [title, setTitle] = useState("");

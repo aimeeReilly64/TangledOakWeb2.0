@@ -3,7 +3,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { Link } from "react-router-dom";
-import "../input.css";
+import "../css/styles.css";
 
 const MyListings = () => {
   const [listings, setListings] = useState([]);

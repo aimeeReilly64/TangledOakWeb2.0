@@ -1,7 +1,8 @@
-// src/firebase.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth"; // ✅ Add this
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage"; // ✅ for image uploads
 
 const firebaseConfig = {
   apiKey: "AIzaSyDhdfarzymyr-UCwASM8nrVsz3EC8iQGZQ",
@@ -15,9 +16,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
-// ✅ Add this line
 const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app); // ✅ Add this
 
-// ✅ Export what you're using
-export { app, analytics, auth };
+export { app, analytics, auth, db, storage }; // ✅ Export storage
