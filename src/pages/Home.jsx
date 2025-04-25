@@ -52,13 +52,13 @@ const Home = () => {
           {/* Hero Section with Two Images */}
           <div className="context-box">
             <h2>Discover Handmade Treasures, Crafted with Heart</h2>
-            <div className="hero-image-row">
+          
               <img
                 src="/views/images/shopFront2.jpg"
                 alt="Storefront from sidewalk"
                 className="hero-img"
               />
-            </div>
+          
             <div className="hero-text">
               Locally made artisanal goods, unique crafts, and one-of-a-kind finds.
             </div>

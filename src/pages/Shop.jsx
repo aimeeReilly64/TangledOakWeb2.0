@@ -1,4 +1,3 @@
-// src/pages/Shop.jsx
 import "../css/styles.css";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -13,6 +12,7 @@ const Shop = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState(null);
   const navigate = useNavigate();
+
   const openModal = (product) => {
     setActiveProduct(product);
     setModalIsOpen(true);
@@ -100,18 +100,38 @@ const Shop = () => {
       </Helmet>
 
       <div className="shop-page">
-        <h1>Shop Our Collection</h1>
-        <p>Browse products from local artisans and makers. Tap a product to check out via our secure Square store.</p>
+        <div className="shop-header">
+          <h1>Shop Our Collection</h1>
+          <p>Browse products from local artisans and makers. Tap a product to check out via our secure Square store.</p>
+        </div>
 
         <div className="shop-filters">
-          <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)} disabled={selectedVendor !== ""}>
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            disabled={selectedVendor !== ""}
+          >
             <option value="">All Categories</option>
-            {categories.map((c) => <option key={c} value={c}>{c}</option>)}
+            {categories.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
           </select>
 
-          <select value={selectedVendor} onChange={(e) => { setSelectedVendor(e.target.value); setSelectedCategory(""); }}>
+          <select
+            value={selectedVendor}
+            onChange={(e) => {
+              setSelectedVendor(e.target.value);
+              setSelectedCategory("");
+            }}
+          >
             <option value="">All Vendors</option>
-            {vendors.map((v) => <option key={v} value={v}>{v}</option>)}
+            {vendors.map((v) => (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -127,14 +147,13 @@ const Shop = () => {
                 <div className="product-card" key={product.id}>
                   {isNewProduct(product.created_at) && <div className="new-badge">New!</div>}
                   <img src={product.image_url} alt={product.name} className="product-image" />
-                  <h3 className="product-name">{product.name}</h3>
+                  <h3 className="product-name">
+                    {product.name.replace(/^New!\s*/i, "")}
+                  </h3>
                   <p className="product-price">${product.price.toFixed(2)} {product.currency}</p>
-              
-
-<button onClick={() => navigate(`/product/${product.id}`)} className="checkout-button">
-  View Product
-</button>
-
+                  <button onClick={() => navigate(`/product/${product.id}`)} className="checkout-button">
+                    View Product
+                  </button>
                 </div>
               ))
           )}
@@ -151,4 +170,3 @@ const Shop = () => {
 };
 
 export default Shop;
-

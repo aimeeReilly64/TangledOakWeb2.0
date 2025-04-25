@@ -94,9 +94,8 @@ app.get("/products", async (req, res) => {
           image_url: imageUrl,
           product_url: item.item_data.ecom_uri || "#",
           category_id: item.item_data.category_id || null,
-          category_name:
-            categoryMap[item.item_data.category_id] || "Uncategorized",
-          created_at: item.created_at || new Date().toISOString(),
+          category_name: categoryMap[item.item_data.category_id] || "Uncategorized",
+          created_at: item.created_at ?? null, // ✅ Don't fallback to new Date()
         };
       });
 
