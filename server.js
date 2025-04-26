@@ -1,11 +1,11 @@
-// server.js
+// server.js (older version before category mapping and created_at)
 
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
 import * as dotenv from "dotenv";
-
 dotenv.config();
+
 global.fetch = fetch;
 
 const app = express();
@@ -17,7 +17,6 @@ const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 app.use(cors());
 app.use(express.json());
 
-// ✅ GET /products
 app.get("/products", async (req, res) => {
   try {
     const response = await fetch(SQUARE_API_URL, {
@@ -42,7 +41,7 @@ app.get("/products", async (req, res) => {
     const items = objects.filter((obj) => obj.type === "ITEM");
     const images = objects.filter((obj) => obj.type === "IMAGE");
 
-    const products = items.map((item) => {
+    const enrichedProducts = items.map((item) => {
       const imageId = item.item_data?.image_ids?.[0];
       const image = images.find((img) => img.id === imageId);
 
@@ -61,14 +60,13 @@ app.get("/products", async (req, res) => {
       };
     });
 
-    res.json({ products });
+    res.json({ products: enrichedProducts });
   } catch (error) {
     console.error("❌ Error fetching products:", error.message);
     res.status(500).json({ error: "Failed to fetch products" });
   }
 });
 
-// ✅ Start server
 app.listen(port, () => {
   console.log(`✅ Server is running on http://localhost:${port}`);
 });
