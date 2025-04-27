@@ -17,10 +17,9 @@ const PORT = process.env.PORT || 5001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Serve frontend static files
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-// ✅ Enable CORS and JSON parsing
+
 app.use(cors());
 app.use(express.json());
 
