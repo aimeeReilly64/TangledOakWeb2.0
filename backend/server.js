@@ -1,24 +1,34 @@
-// server.js (final clean version)
+// server.js
 
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
+import path from "path";
+import { fileURLToPath } from "url";
 import * as dotenv from "dotenv";
 dotenv.config();
 
+// Setup globals
 global.fetch = fetch;
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/search";
-const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Enable CORS and JSON parsing
+// ✅ Serve frontend static files
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+// ✅ Enable CORS and JSON parsing
 app.use(cors());
 app.use(express.json());
 
-// Replace with your real Square category UUID mappings
+// ✅ Square API Setup
+const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/search";
+const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
+
+// ✅ Optional: Map category UUIDs to friendly names
 const categoryMap = {
   "UUID_FOR_JEWELRY": "Jewelry",
   "UUID_FOR_CLOTHING": "Clothing",
@@ -27,6 +37,7 @@ const categoryMap = {
   // Add more mappings here
 };
 
+// ✅ API endpoint to fetch products
 app.get("/products", async (req, res) => {
   try {
     let allItems = [];
@@ -65,7 +76,7 @@ app.get("/products", async (req, res) => {
           item.item_data.variations?.some((v) => !v.is_deleted)
       )
       .map((item) => {
-        const variation = item.item_data.variations?.[0]; // First variation
+        const variation = item.item_data.variations?.[0];
         const priceData = variation?.item_variation_data?.price_money || {
           amount: 0,
           currency: "CAD",
@@ -96,7 +107,12 @@ app.get("/products", async (req, res) => {
   }
 });
 
-// ✅ Only ONE app.listen here
+// ✅ Catch-all route to serve React app for frontend routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+
+// ✅ Start the server
 app.listen(PORT, () => {
   console.log(`✅ Server is running on port ${PORT}`);
 });
