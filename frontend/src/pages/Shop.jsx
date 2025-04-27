@@ -48,7 +48,7 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    fetch(`/products`)  // 🛠 fixed: no VITE_API_URL
+    fetch(`${import.meta.env.VITE_API_URL}/products`)  
       .then((response) => {
         if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
@@ -160,11 +160,7 @@ const Shop = () => {
         </div>
       </div>
 
-      <ProductModal
-        isOpen={modalIsOpen}
-        product={activeProduct}
-        onClose={closeModal}
-      />
+      <ProductModal isOpen={modalIsOpen} product={activeProduct} onClose={closeModal} />
     </>
   );
 };
