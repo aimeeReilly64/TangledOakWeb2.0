@@ -4,6 +4,9 @@ import { Helmet } from "react-helmet";
 import ProductModal from "../components/ProductModal";
 import { useNavigate } from "react-router-dom";
 
+// 👇 Added apiBaseUrl to automatically switch between local and Render
+const apiBaseUrl = import.meta.env.VITE_API_URL || "http://localhost:5001";
+
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -48,7 +51,7 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    fetch(`/products`)  // 🛠 fixed: no VITE_API_URL
+    fetch(`${apiBaseUrl}/products`)
       .then((response) => {
         if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
@@ -170,3 +173,4 @@ const Shop = () => {
 };
 
 export default Shop;
+
