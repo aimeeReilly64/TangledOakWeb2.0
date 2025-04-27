@@ -1,4 +1,4 @@
-// server.js (fixed and clean)
+// server.js (final clean version)
 
 import express from "express";
 import cors from "cors";
@@ -9,11 +9,12 @@ dotenv.config();
 global.fetch = fetch;
 
 const app = express();
-const port = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5001;
 
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/search";
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 
+// Enable CORS and JSON parsing
 app.use(cors());
 app.use(express.json());
 
@@ -64,7 +65,7 @@ app.get("/products", async (req, res) => {
           item.item_data.variations?.some((v) => !v.is_deleted)
       )
       .map((item) => {
-        const variation = item.item_data.variations?.[0]; // Grab first variation
+        const variation = item.item_data.variations?.[0]; // First variation
         const priceData = variation?.item_variation_data?.price_money || {
           amount: 0,
           currency: "CAD",
@@ -82,19 +83,20 @@ app.get("/products", async (req, res) => {
           currency: priceData.currency || "CAD",
           image_url: imageUrl,
           product_url: item.item_data.ecom_uri || "#",
-          category_id: item.item_data.category_id || null, // ✅ Correct source
-          category_name: categoryMap[item.item_data.category_id] || "Uncategorized", // ✅
-          created_at: item.created_at || new Date().toISOString(), // ✅ optional but recommended
+          category_id: item.item_data.category_id || null,
+          category_name: categoryMap[item.item_data.category_id] || "Uncategorized",
+          created_at: item.created_at || new Date().toISOString(),
         };
       });
 
     res.json({ products });
   } catch (error) {
     console.error("🚨 Error fetching products:", error.message);
-    res.status(500).json({ error: "Failed to fetch products" });
+    res.status(500).json({ error: `Failed to fetch products: ${error.message}` });
   }
 });
 
-app.listen(port, () => {
-  console.log(`✅ Server is running on http://localhost:${port}`);
+// ✅ Only ONE app.listen here
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on port ${PORT}`);
 });
