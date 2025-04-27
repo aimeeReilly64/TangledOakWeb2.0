@@ -19,7 +19,7 @@ import ApproveVendor from "./pages/ApproveVendor";
 import CreateListing from "./pages/CreateListing";
 import MyListings from "./pages/MyListings";
 import ListingDetails from "./pages/ListingDetails";
-import SupplySwap from "./pages/SupplySwap";
+
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Blog from "./pages/Blog";
 import CraftIdeas from "./pages/CraftIdeas";
@@ -73,7 +73,7 @@ const App = () => {
             }
           />
           <Route path="/listing/:listingId" element={<ListingDetails />} />
-          <Route path="/supply-swap" element={<SupplySwap />} />
+     
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/craft-ideas" element={<CraftIdeas />} />
