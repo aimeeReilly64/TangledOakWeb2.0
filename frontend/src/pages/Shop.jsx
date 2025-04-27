@@ -1,5 +1,3 @@
-// src/pages/Shop.jsx
-
 import "../css/styles.css";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -25,6 +23,23 @@ const Shop = () => {
     setModalIsOpen(false);
   };
 
+  const categorizeProduct = (product) => {
+    const name = (product.name || "").toLowerCase();
+    const desc = (product.description || "").toLowerCase();
+
+    if (name.includes("earring") || name.includes("necklace") || name.includes("ring")) return "Jewelry";
+    if (name.includes("sweater") || name.includes("hat") || name.includes("shirt") || name.includes("shawl") || name.includes("beret")) return "Clothing";
+    if (name.includes("soap") || name.includes("scrub") || name.includes("bath") || name.includes("body")) return "Bath + Beauty";
+    if (name.includes("home") || desc.includes("decor") || name.includes("pillow") || name.includes("sign")) return "Home Decor";
+    if (name.includes("knife") || name.includes("axe") || name.includes("dagger") || name.includes("blade")) return "Knives + Axes";
+    if (name.includes("crystal") || name.includes("stone") || name.includes("gem")) return "Crystals";
+    if (name.includes("kids") || name.includes("baby")) return "Baby + Kids";
+    if (name.includes("card") || name.includes("gift") || name.includes("tag")) return "Cards + Gifting Supplies";
+    if (name.includes("craft") || name.includes("bead") || name.includes("wire") || name.includes("pom")) return "Crafting";
+
+    return "Uncategorized";
+  };
+
   const isNewProduct = (createdAt) => {
     const now = new Date();
     const created = new Date(createdAt);
@@ -33,7 +48,7 @@ const Shop = () => {
   };
 
   useEffect(() => {
-    fetch("/products")
+    fetch(`/products`)  // 🛠 fixed: no VITE_API_URL
       .then((response) => {
         if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
@@ -41,8 +56,8 @@ const Shop = () => {
       .then((data) => {
         const enriched = data.products.map((product) => ({
           ...product,
-          category_name: product.category_name || "Uncategorized",
-          created_at: product.created_at || new Date().toISOString(),
+          category_name: categorizeProduct(product),
+          created_at: product.created_at || new Date("2024-04-01"),
         }));
 
         enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
