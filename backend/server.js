@@ -5,10 +5,10 @@ import cors from "cors";
 import fetch from "node-fetch";
 import path from "path";
 import { fileURLToPath } from "url";
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 dotenv.config();
 
-// Setup globals
+// Setup global fetch
 global.fetch = fetch;
 
 const app = express();
@@ -17,26 +17,25 @@ const PORT = process.env.PORT || 5001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Serve frontend static files
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
 
 app.use(cors());
 app.use(express.json());
 
-// ✅ Square API Setup
+// Square API Setup
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/search";
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 
-// ✅ Optional: Map category UUIDs to friendly names
+// Category mapping (Update UUIDs as needed)
 const categoryMap = {
   "UUID_FOR_JEWELRY": "Jewelry",
   "UUID_FOR_CLOTHING": "Clothing",
   "UUID_FOR_ACCESSORIES": "Accessories",
   "UUID_FOR_CRYSTALS": "Crystals",
-  // Add more mappings here
 };
 
-// ✅ API endpoint to fetch products
+// Fetch products from Square
 app.get("/products", async (req, res) => {
   try {
     let allItems = [];
@@ -57,29 +56,19 @@ app.get("/products", async (req, res) => {
       });
 
       if (!response.ok) {
-        throw new Error(`Square API error! Status: ${response.status}`);
+        throw new Error(`Square API error: ${response.status}`);
       }
 
       const data = await response.json();
-      const items = data.objects || [];
-      allItems = [...allItems, ...items];
+      allItems = [...allItems, ...(data.objects || [])];
       cursor = data.cursor;
     } while (cursor);
 
     const products = allItems
-      .filter(
-        (item) =>
-          item.type === "ITEM" &&
-          item.item_data &&
-          !item.is_deleted &&
-          item.item_data.variations?.some((v) => !v.is_deleted)
-      )
-      .map((item) => {
+      .filter(item => item.type === "ITEM" && item.item_data && !item.is_deleted)
+      .map(item => {
         const variation = item.item_data.variations?.[0];
-        const priceData = variation?.item_variation_data?.price_money || {
-          amount: 0,
-          currency: "CAD",
-        };
+        const priceData = variation?.item_variation_data?.price_money || { amount: 0, currency: "CAD" };
 
         const imageUrl =
           item.item_data.ecom_image_uris?.[0] ||
@@ -101,17 +90,18 @@ app.get("/products", async (req, res) => {
 
     res.json({ products });
   } catch (error) {
-    console.error("🚨 Error fetching products:", error.message);
+    console.error("Error fetching products:", error.message);
     res.status(500).json({ error: `Failed to fetch products: ${error.message}` });
   }
 });
 
-// ✅ Catch-all route to serve React app for frontend routing
+// Catch-all for React frontend routing
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
-// ✅ Start the server
+// Start the server
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
+
