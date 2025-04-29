@@ -1,5 +1,3 @@
-// src/pages/ProductPage.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "../css/styles.css";
@@ -8,6 +6,7 @@ const ProductPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState("");
+  const [selectedVariation, setSelectedVariation] = useState(""); // To handle variations
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,15 +39,51 @@ const ProductPage = () => {
     return <div className="product-page"><p>Loading...</p></div>;
   }
 
+  // Handle the product variations rendering
+  const handleVariationChange = (e) => {
+    setSelectedVariation(e.target.value);
+  };
+
   return (
     <div className="product-page">
-      <h1>{product.name}</h1>
-      <img src={product.image_url} alt={product.name} style={{ maxWidth: "300px" }} />
-      <p><strong>Price:</strong> ${product.price.toFixed(2)} {product.currency}</p>
-      <p>{product.description}</p>
-      <a href={product.product_url} target="_blank" rel="noopener noreferrer" className="checkout-button">
-        Buy Now
-      </a>
+      <div className="product-header">
+        <h1>{product.name}</h1>
+        <p><strong>Price:</strong> ${product.price.toFixed(2)} {product.currency}</p>
+      </div>
+
+      <div className="product-content">
+        {/* Product Image */}
+        <div className="product-image">
+          <img src={product.image_url} alt={product.name} style={{ maxWidth: "100%" }} />
+        </div>
+
+        {/* Product Description */}
+        <div className="product-details">
+          <p>{product.description}</p>
+
+          {/* Variations (if any) */}
+          {product.variations && product.variations.length > 0 && (
+            <div className="product-variations">
+              <label htmlFor="variation-select">Choose Variation:</label>
+              <select
+                id="variation-select"
+                value={selectedVariation}
+                onChange={handleVariationChange}
+              >
+                {product.variations.map((variation, index) => (
+                  <option key={index} value={variation.name}>
+                    {variation.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <a href={product.product_url} target="_blank" rel="noopener noreferrer" className="checkout-button">
+            Buy Now
+          </a>
+        </div>
+      </div>
     </div>
   );
 };

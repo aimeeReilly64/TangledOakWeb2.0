@@ -4,6 +4,44 @@
   margin: 0;
   padding: 0;
 }
+.product-page {
+  padding: 20px;
+}
+
+.product-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.product-image img {
+  max-width: 300px;
+  border-radius: 8px;
+}
+
+.product-details {
+  flex: 1;
+  padding: 20px;
+}
+
+.product-variations {
+  margin: 10px 0;
+}
+
+.checkout-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
 
 body {
   font-family: "Poppins", sans-serif;
