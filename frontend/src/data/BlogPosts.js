@@ -4,9 +4,10 @@ const blogPosts = [
         title: "Crochet Face Scrubbies – A Quick & Easy Pattern",
         date: "2025-04-30",
         summary: "Learn how to make reusable, eco-friendly crochet face scrubbies in just a few rows. Perfect for gifts or self-care.",
+       
         content: `
           Looking for an eco-friendly, handmade touch to your skincare routine? These reusable crochet face scrubbies are soft, durable, and perfect for gifting or daily use. They're quick to make and beginner-friendly.
-      
+      ![Crochet Scrubbies](public/views/images/scrubbiesPattern.jpg)
           **Supplies:**
           - Yarn: Bernat Handicrafter or Lily Sugar’n Cream (cotton yarn)
           - Hook: 5 mm (U.S. H-8) crochet hook
@@ -27,6 +28,7 @@ const blogPosts = [
       
           **Finishing:**  
           Fasten off and weave in the ends. Pull the magic circle tight to close. These scrubbies can be machine washed and reused endlessly.
+      ![Crochet Scrubbies](public/views/images/scrubbies.jpg)
         `
       },
 

@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import blogPosts from "../data/BlogPosts";
 import ReactMarkdown from "react-markdown";
 import "../css/styles.css";
+import rehypeRaw from "rehype-raw";
 
 const Post = () => {
   const { slug } = useParams();
@@ -15,7 +16,9 @@ const Post = () => {
       <h1 className="blog-title">{post.title}</h1>
       <p className="blog-date">{new Date(post.date).toLocaleDateString()}</p>
       <div className="blog-content">
-        <ReactMarkdown>{post.content}</ReactMarkdown>
+      <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+  {post.content}
+</ReactMarkdown>
       </div>
       <Link to="/blog" className="back-button">← Back to Blog</Link>
     </div>
