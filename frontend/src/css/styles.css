@@ -81,10 +81,10 @@
 .product-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  justify-content: center;
   padding: 2rem 1rem;
+  justify-content: center;
 }
+
 .product-image img {
   max-width: 100%;
   height: auto;
@@ -141,10 +141,6 @@
   align-items: flex-start;
 }
 
-.product-image img {
-  max-width: 300px;
-  border-radius: 8px;
-}
 
 .product-details {
   flex: 1;
@@ -160,17 +156,6 @@
   max-width: 600px;
   margin: 2rem auto;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-.checkout-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
 }
 
 body {
