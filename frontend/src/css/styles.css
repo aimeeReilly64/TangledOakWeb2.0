@@ -76,20 +76,14 @@
   background-color: #174023;
 }
 
-
-/* === Product Page Styles === */
 .product-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
-  justify-content: center;
-}
-
-.product-image img {
-  max-width: 300px;
-  height: auto; 
-  border-radius: 3px;
-  border: 1px solid #2D5C47;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .product-image {
@@ -99,15 +93,37 @@
   padding: 1rem;
   background-color: #f7f7f7;
   border-radius: 8px;
+  max-width: 90vw;
 }
 
-.product-header {
-  text-align: center;
-  margin-bottom: 1rem;
+.product-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+  border: 1px solid #2D5C47;
+}
+
+.product-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #2D5C47;
+  margin-bottom: 0.25rem;
 }
 
 .product-price {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
   color: #2b2b2b;
   margin: 0.5rem 0;
@@ -115,9 +131,13 @@
 
 .product-description {
   font-size: 1rem;
-  margin-bottom: 1rem;
   color: #444;
   line-height: 1.6;
+  text-align: left;
+  background-color: #f7f7f7;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
 }
 
 .product-variations {
@@ -126,41 +146,18 @@
 }
 
 .checkout-button {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  text-align: center;
+  display: inline-block;
+  padding: 0.75rem 2rem;
   background-color: #2f4f4f;
   color: white;
   border: none;
   border-radius: 8px;
-  text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.product-content {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-}
-
-
-.product-details {
-  flex: 1;
-  padding: 20px;
-}
-.product-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5rem;
-  background-color: #f7f7f7;
-  border-radius: 8px;
-  max-width: 600px;
-  margin: 2rem auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
 
 body {
   font-family: "Poppins", sans-serif;
