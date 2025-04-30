@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import "../css/styles.css";
 
 const ProductPage = () => {
@@ -7,6 +8,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState("");
   const [selectedVariation, setSelectedVariation] = useState("");
+  const [confirmation, setConfirmation] = useState("");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,6 +42,12 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = () => {
+    if (product.variations?.length > 0 && !selectedVariation) {
+      setConfirmation("Please select a variation.");
+      setTimeout(() => setConfirmation(""), 2000);
+      return;
+    }
+
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const itemToAdd = {
       id: product.id,
@@ -64,7 +72,8 @@ const ProductPage = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Added to cart!");
+    setConfirmation("Added to cart!");
+    setTimeout(() => setConfirmation(""), 2000);
   };
 
   if (error) {
@@ -77,12 +86,18 @@ const ProductPage = () => {
 
   return (
     <div className="product-page">
+      <Helmet>
+        <title>{product.name} | Tangled Oak</title>
+        <meta name="description" content={product.description.slice(0, 150)} />
+      </Helmet>
+
       <div className="product-image">
         <img
           src={product.image_url || "/fallback.jpg"}
           alt={product.name}
         />
       </div>
+
       <div className="context-box product-box">
         <div className="product-header">
           <h1>{product.name}</h1>
@@ -116,6 +131,12 @@ const ProductPage = () => {
         <button onClick={handleAddToCart} className="checkout-button">
           Add to Cart
         </button>
+
+        {confirmation && (
+          <p style={{ color: "#2D5C47", marginTop: "1rem", fontWeight: "bold" }}>
+            {confirmation}
+          </p>
+        )}
       </div>
     </div>
   );
