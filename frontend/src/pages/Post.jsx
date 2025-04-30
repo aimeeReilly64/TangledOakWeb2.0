@@ -1,29 +1,26 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import blogPosts from "../data/BlogPosts";
+import ReactMarkdown from "react-markdown";
+import "../css/styles.css";
 
 const Post = () => {
   const { slug } = useParams();
   const post = blogPosts.find((p) => p.id === slug);
 
-  if (!post) {
-    return (
-      <div className="context-box">
-        <h1>Post Not Found</h1>
-        <Link to="/blog" className="button">Back to Blog</Link>
-      </div>
-    );
-  }
+  if (!post) return <div className="blog-container">Post not found.</div>;
 
   return (
-    <div className="context-box">
-      <h1>{post.title}</h1>
-      <p><em>{new Date(post.date).toLocaleDateString()}</em></p>
-      <div style={{ whiteSpace: "pre-line" }}>{post.content}</div>
-      <br />
-      <Link to="/blog" className="button">← Back to Blog</Link>
+    <div className="blog-container">
+      <h1 className="blog-title">{post.title}</h1>
+      <p className="blog-date">{new Date(post.date).toLocaleDateString()}</p>
+      <div className="blog-content">
+        <ReactMarkdown>{post.content}</ReactMarkdown>
+      </div>
+      <Link to="/blog" className="back-button">← Back to Blog</Link>
     </div>
   );
 };
 
 export default Post;
+
