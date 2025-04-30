@@ -90,7 +90,7 @@ const ProductPage = () => {
         <title>{product.name} | Tangled Oak</title>
         <meta name="description" content={product.description.slice(0, 150)} />
       </Helmet>
-
+<div className="main-content">
         <div className="product-header">
           <h1>{product.name}</h1>
           <p className="product-price">
@@ -123,7 +123,7 @@ const ProductPage = () => {
         <button onClick={handleAddToCart} className="checkout-button">
           Add to Cart
         </button>
-
+</div>
         {confirmation && (
           <p style={{ color: "#2D5C47", marginTop: "1rem", fontWeight: "bold" }}>
             {confirmation}
