@@ -19,10 +19,7 @@
   align-items: flex-start;
 }
 
-.product-image img {
-  max-width: 100px;
-  border-radius: 8px;
-}
+
 
 .product-details {
   flex: 1;
@@ -265,7 +262,7 @@ h3 {
 }
 
 .product-card {
-  background: #f4f4f1;
+  background: #f0f0d4;
   border: 1px solid #2D5C47;
   border-radius: 12px;
   padding: 16px;
@@ -282,7 +279,7 @@ h3 {
 
 
 .product-image {
-  width: 100%;
+  width: 150px;
   max-height: 180px;
   object-fit: contain;
   border-radius: 10px;
