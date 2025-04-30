@@ -46,13 +46,14 @@ const ProductPage = () => {
 
     return (
       <div className="product-page">
-        <div className="context-box product-box">
-          <div className="product-image">
+         <div className="product-image">
             <img
               src={product.image_url}
               alt={product.name}
             />
           </div>
+        <div className="context-box product-box">
+    
     
           <div className="product-header">
             <h1>{product.name}</h1>
