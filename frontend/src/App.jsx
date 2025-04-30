@@ -22,12 +22,13 @@ import ListingDetails from "./pages/ListingDetails";
 
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Blog from "./pages/Blog";
+import Post from "./pages/Post";
 import CraftIdeas from "./pages/CraftIdeas";
 
 // Shared UI
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ProtectedRoute from "./components/ProtectedRoute"; // ✅ Add this
+import ProtectedRoute from "./components/ProtectedRoute"; 
 
 const App = () => {
   return (
@@ -76,6 +77,7 @@ const App = () => {
      
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/blog" element={<Blog />} />
+<Route path="/blog/:slug" element={<Post />} />
           <Route path="/craft-ideas" element={<CraftIdeas />} />
         </Routes>
       </div>
