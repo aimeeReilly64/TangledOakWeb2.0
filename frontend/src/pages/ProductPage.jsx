@@ -44,54 +44,52 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="product-page">
-      <div className="context-box product-box">
-        <div className="product-header">
-          <h1>{product.name}</h1>
-          <p><strong>Price:</strong> ${product.price.toFixed(2)} {product.currency}</p>
-        </div>
-
-        <div className="product-content">
+    return (
+      <div className="product-page">
+        <div className="context-box product-box">
           <div className="product-image">
             <img
               src={product.image_url}
               alt={product.name}
-              style={{ maxWidth: "100%", borderRadius: "12px" }}
             />
           </div>
-
-          <div className="product-details">
-            <p>{product.description}</p>
-
-            {product.variations?.length > 0 && (
-              <div className="product-variations">
-                <label htmlFor="variation-select">Choose Variation:</label>
-                <select
-                  id="variation-select"
-                  value={selectedVariation}
-                  onChange={handleVariationChange}
-                >
-                  {product.variations.map((variation, index) => (
-                    <option key={index} value={variation.name}>
-                      {variation.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            <a
-              href={product.product_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="checkout-button"
-            >
-              Buy Now
-            </a>
+    
+          <div className="product-header">
+            <h1>{product.name}</h1>
+            <p className="product-price">${product.price.toFixed(2)} {product.currency}</p>
           </div>
+    
+          <div className="product-description">
+            <p>{product.description}</p>
+          </div>
+    
+          {product.variations?.length > 0 && (
+            <div className="product-variations">
+              <label htmlFor="variation-select">Choose Variation:</label>
+              <select
+                id="variation-select"
+                value={selectedVariation}
+                onChange={(e) => setSelectedVariation(e.target.value)}
+              >
+                {product.variations.map((variation, index) => (
+                  <option key={index} value={variation.name}>
+                    {variation.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+    
+          <a
+            href={product.product_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="checkout-button"
+          >
+            Buy Now
+          </a>
         </div>
       </div>
-    </div>
   );
 };
 
