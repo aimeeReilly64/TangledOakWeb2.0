@@ -46,6 +46,7 @@ const ProductPage = () => {
 
   return (
     <div className="product-page">
+    <div className="context-box">
       <div className="product-header">
         <h1>{product.name}</h1>
         <p><strong>Price:</strong> ${product.price.toFixed(2)} {product.currency}</p>
@@ -84,6 +85,7 @@ const ProductPage = () => {
           </a>
         </div>
       </div>
+    </div>
     </div>
   );
 };
