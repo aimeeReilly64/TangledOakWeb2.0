@@ -6,7 +6,7 @@ const ProductPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState("");
-  const [selectedVariation, setSelectedVariation] = useState(""); // To handle variations
+  const [selectedVariation, setSelectedVariation] = useState("");
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -39,56 +39,59 @@ const ProductPage = () => {
     return <div className="product-page"><p>Loading...</p></div>;
   }
 
-  // Handle the product variations rendering
   const handleVariationChange = (e) => {
     setSelectedVariation(e.target.value);
   };
 
   return (
     <div className="product-page">
-  <div className="context-box">
-    <div className="product-box">
-      <div className="product-header">
-        <h1>{product.name}</h1>
-        <p><strong>Price:</strong> ${product.price.toFixed(2)} {product.currency}</p>
-      </div>
-
-      <div className="product-content">
-        {/* Product Image */}
-        <div className="product-image">
-          <img src={product.image_url} alt={product.name} style={{ maxWidth: "100%" }} />
+      <div className="context-box product-box">
+        <div className="product-header">
+          <h1>{product.name}</h1>
+          <p><strong>Price:</strong> ${product.price.toFixed(2)} {product.currency}</p>
         </div>
 
-        {/* Product Description */}
-        <div className="product-details">
-          <p>{product.description}</p>
+        <div className="product-content">
+          <div className="product-image">
+            <img
+              src={product.image_url}
+              alt={product.name}
+              style={{ maxWidth: "100%", borderRadius: "12px" }}
+            />
+          </div>
 
-          {product.variations?.length > 0 && (
-            <div className="product-variations">
-              <label htmlFor="variation-select">Choose Variation:</label>
-              <select
-                id="variation-select"
-                value={selectedVariation}
-                onChange={handleVariationChange}
-              >
-                {product.variations.map((variation, index) => (
-                  <option key={index} value={variation.name}>
-                    {variation.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
+          <div className="product-details">
+            <p>{product.description}</p>
 
-          <a href={product.product_url} target="_blank" rel="noopener noreferrer" className="checkout-button">
-            Buy Now
-          </a>
+            {product.variations?.length > 0 && (
+              <div className="product-variations">
+                <label htmlFor="variation-select">Choose Variation:</label>
+                <select
+                  id="variation-select"
+                  value={selectedVariation}
+                  onChange={handleVariationChange}
+                >
+                  {product.variations.map((variation, index) => (
+                    <option key={index} value={variation.name}>
+                      {variation.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            <a
+              href={product.product_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="checkout-button"
+            >
+              Buy Now
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
   );
 };
 
