@@ -91,15 +91,6 @@ const ProductPage = () => {
         <meta name="description" content={product.description.slice(0, 150)} />
       </Helmet>
 
-      <div className="context-box product-box">
-
-        <div className="product-image">
-          <img
-            src={product.image_url || "/fallback.jpg"}
-            alt={product.name}
-          /><br/>
-        </div>
-
         <div className="product-header">
           <h1>{product.name}</h1>
           <p className="product-price">
@@ -138,8 +129,13 @@ const ProductPage = () => {
             {confirmation}
           </p>
         )}
+           <div className="product-image">
+          <img
+            src={product.image_url || "/fallback.jpg"}
+            alt={product.name}
+          /><br/>
+        </div>
       </div>
-    </div>
   );
 };
 
