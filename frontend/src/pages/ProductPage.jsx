@@ -91,13 +91,6 @@ const ProductPage = () => {
         <meta name="description" content={product.description.slice(0, 150)} />
       </Helmet>
 
-      <div className="product-image">
-        <img
-          src={product.image_url || "/fallback.jpg"}
-          alt={product.name}
-        />
-      </div>
-
       <div className="context-box product-box">
         <div className="product-header">
           <h1>{product.name}</h1>
@@ -112,6 +105,13 @@ const ProductPage = () => {
 
         {product.variations?.length > 0 && (
           <div className="product-variations">
+            
+      <div className="product-image">
+        <img
+          src={product.image_url || "/fallback.jpg"}
+          alt={product.name}
+        />
+      </div>
             <label htmlFor="variation-select">Choose Variation:</label>
             <select
               id="variation-select"
