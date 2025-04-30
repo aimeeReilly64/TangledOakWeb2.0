@@ -262,7 +262,7 @@ h3 {
 }
 
 .product-card {
-  background: #f0f0d4;
+  background: #f3eae3;
   border: 1px solid #2D5C47;
   border-radius: 12px;
   padding: 16px;
@@ -280,12 +280,12 @@ h3 {
 
 .product-image {
   width: 150px;
-  max-height: 180px;
+  max-height: 300px;
   object-fit: contain;
   border-radius: 10px;
   display: block;
   margin: 0 auto 12px auto;
-  background: white;
+  background: #f3eae3;
   padding: 8px;
 }
 
