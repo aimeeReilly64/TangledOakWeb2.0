@@ -43,7 +43,7 @@ const ProductPage = () => {
     setSelectedVariation(e.target.value);
   };
 
-  return (
+
     return (
       <div className="product-page">
         <div className="context-box product-box">
