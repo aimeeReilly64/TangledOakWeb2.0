@@ -191,8 +191,8 @@ p {
   max-width: 1000px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #f8f1e8; /* light, clean background */
+  background-color: #fdfaf6; /* light, clean background */
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border: 1px solid #d6c2b1;
+  border: 1px solid #021f12;
 }
