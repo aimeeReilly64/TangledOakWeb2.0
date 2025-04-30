@@ -92,7 +92,7 @@ body {
 }
 
 .product-image img {
-  max-width: 80%;
+  max-width: 300px;
   height: auto;
   display: block;
   margin: 1rem auto;
