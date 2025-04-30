@@ -1,7 +1,9 @@
 // src/pages/Blog.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import blogPosts from "../data/blogPosts";
+import blogPosts from "../data/BlogPosts"; 
+import "../css/styles.css"; 
+
 
 const Blog = () => {
   return (
