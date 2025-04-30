@@ -97,7 +97,7 @@ const ProductPage = () => {
           <img
             src={product.image_url || "/fallback.jpg"}
             alt={product.name}
-          />
+          /><br/>
         </div>
 
         <div className="product-header">
