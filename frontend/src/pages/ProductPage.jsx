@@ -46,7 +46,8 @@ const ProductPage = () => {
 
   return (
     <div className="product-page">
-    <div className="context-box">
+  <div className="context-box">
+    <div className="product-box">
       <div className="product-header">
         <h1>{product.name}</h1>
         <p><strong>Price:</strong> ${product.price.toFixed(2)} {product.currency}</p>
@@ -62,8 +63,7 @@ const ProductPage = () => {
         <div className="product-details">
           <p>{product.description}</p>
 
-          {/* Variations (if any) */}
-          {product.variations && product.variations.length > 0 && (
+          {product.variations?.length > 0 && (
             <div className="product-variations">
               <label htmlFor="variation-select">Choose Variation:</label>
               <select
@@ -86,7 +86,9 @@ const ProductPage = () => {
         </div>
       </div>
     </div>
-    </div>
+  </div>
+</div>
+
   );
 };
 
