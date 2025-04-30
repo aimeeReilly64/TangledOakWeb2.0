@@ -79,7 +79,9 @@
 
 /* === Product Page Styles === */
 .product-page {
-  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
   justify-content: center;
   padding: 2rem 1rem;
 }
