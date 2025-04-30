@@ -567,215 +567,6 @@ h3 {
 .button:hover {
   background-color: #2a4c20;
 }
-/* Base Reset + Global */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-.product-page {
-  padding: 20px;
-}
-
-.product-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.product-content {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-}
-
-.product-image img {
-  max-width: 300px;
-  border-radius: 8px;
-}
-
-.product-details {
-  flex: 1;
-  padding: 20px;
-}
-
-.product-variations {
-  margin: 10px 0;
-}
-
-.checkout-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  background-color: #d0c4b6;
-  color: #333;
-  min-height: 100vh;
-}
-
-/* Headings */
-h1 {
-  font-size: clamp(1.25rem, 2vw, 2rem);
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #2D5C47;
-}
-
-h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #2D5C47;
-}
-
-p {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-/* Layout */
-.main-wrapper {
-  display: flex;
-  align-items: flex-start;
-  min-height: 100vh;
-}
-
-.main-content {
-  padding: 2rem;
-  background-color: #d0c4b6;
-  position: relative;
-  z-index: 2;
-}
-
-/* Header Wrapper */
-.framed-header,
-.framed-footer {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-/* Header */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #1a2f0f;
-  width: 90%;
-  margin: -20px auto 0 auto;
-  z-index: 1001;
-  background-color: #abc29c;
-  padding: 30px;
-  border-radius: 30px;
-  text-align: center;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  box-shadow: 0 2px 5px rgb(26, 47, 15);
-  position: relative;
-  margin-top: auto;
-}
-
-.nav-links {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.nav-link {
-  color: #2D5C47;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.3s;
-}
-
-.nav-link:hover {
-  color: #87a17a;
-}
-
-.soft-background {
-  background-color: #e6ddd0; /* soft clay tone */
-  padding: 2rem;
-  border-radius: 12px;
-}
-
-.soft-box {
-  background-color: #f3eae3; /* warm off-white */
-  border-radius: 10px;
-  padding: 1rem;
-  border: 1px solid #d6c2b1;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-}
-
-.product-buttons {
-  margin-top: 1rem;
-}
-
-.new-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: #87a17a; /* this soft green */
-  color: white;
-  font-weight: bold;
-  font-size: 12px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  z-index: 1;
-}
-
-h3 {
-  font-size: 15px;
-  margin-bottom: 10px;
-  text-align: center;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #2D5C47;
-}
-
-/* Context Box */
-.context-box {
-  background-color: rgb(224, 215, 207);
-  border: 1px solid #2D5C47;
-  border-radius: 10px;
-  padding: 2rem;
-  text-align: center;
-  box-shadow: 0 4px 8px rgb(26, 47, 15);
-  margin: 2rem auto;
-  width: 95%;
-  max-width: 1400px;
-  margin-bottom: 2rem;
-}
-
-/* Buttons */
-.button {
-  background-color: #2D5C47;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 16px;
-  border: 1px solid #87a17a;
-  transition: background-color 0.3s;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #87a17a;
-}
-
-/* Removed leaf animation block */
 
 .map {
   width: 100%;
@@ -906,7 +697,9 @@ h3 {
 .vendor-button:hover {
   background-color: #87a17a;
 }
-
+h1 {
+  font-size: clamp(1.25rem, 2vw, 2rem);
+}
 .feature-img {
   width: 100%;
   max-width: 700px; /* or whatever size looks best for your layout */
@@ -916,9 +709,15 @@ h3 {
   border-radius: 8px;
   border: 1px solid #2D5C47;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+@media screen and (max-width: 480px) {
+  .feature-img {
+    max-width: 100%;
+  }
+}
+.feature-img {
   margin-bottom: 1.5rem;
 }
-
 @media screen and (max-width: 900px) {
   header {
     flex-direction: column;
