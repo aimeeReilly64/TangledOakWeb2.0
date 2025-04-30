@@ -26,27 +26,48 @@ const Shop = () => {
   const categorizeProduct = (product) => {
     const name = (product.name || "").toLowerCase();
     const desc = (product.description || "").toLowerCase();
-
-    if (name.includes("earring") || name.includes("necklace") || name.includes("ring")) return "Jewelry";
-    if (name.includes("sweater") || name.includes("hat") || name.includes("shirt") || name.includes("shawl") || name.includes("beret")) return "Clothing";
-    if (name.includes("soap") || name.includes("scrub") || name.includes("bath") || name.includes("body")) return "Bath + Beauty";
-    if (name.includes("home") || desc.includes("decor") || name.includes("pillow") || name.includes("sign")) return "Home Decor";
-    if (name.includes("knife") || name.includes("axe") || name.includes("dagger") || name.includes("blade")) return "Knives + Axes";
-    if (name.includes("crystal") || name.includes("stone") || name.includes("gem")) return "Crystals";
-    if (name.includes("kids") || name.includes("baby")) return "Baby + Kids";
-    if (name.includes("card") || name.includes("gift") || name.includes("tag")) return "Cards + Gifting Supplies";
-    if (name.includes("craft") || name.includes("bead") || name.includes("wire") || name.includes("pom")) return "Crafting";
-
+  
+    if (name.includes("earring") || name.includes("necklace") || name.includes("bracelet") || name.includes("ring"))
+      return "Jewelry";
+    if (name.includes("hat") || name.includes("shirt") || name.includes("sweater") || name.includes("shawl") || name.includes("scarf") || name.includes("tank") || name.includes("mitten") || name.includes("sock") || name.includes("slipper"))
+      return "Clothing + Wearables";
+    if (name.includes("bag") || name.includes("purse") || name.includes("tote"))
+      return "Bags";
+    if (name.includes("baby") || name.includes("kids") || desc.includes("child"))
+      return "Baby + Kids";
+    if (name.includes("soap") || name.includes("bath") || name.includes("scrub") || name.includes("beard") || name.includes("lotion") || name.includes("bomb"))
+      return "Bath + Body";
+    if (name.includes("crystal") || name.includes("gem") || name.includes("stone"))
+      return "Crystals + Healing";
+    if (name.includes("mug") || name.includes("glass"))
+      return "Kitchen";
+    if (name.includes("biscotti") || name.includes("cheese") || name.includes("maple") || name.includes("snack"))
+      return "Pantry + Snacks";
+    if (name.includes("pet") || name.includes("treat") || desc.includes("dog") || desc.includes("cat"))
+      return "Pets";
+    if (name.includes("knife") || name.includes("blade") || name.includes("dagger") || name.includes("axe"))
+      return "Knives + Blades";
+    if (name.includes("craft") || name.includes("kit") || name.includes("supply") || name.includes("bead") || name.includes("wire") || name.includes("pom"))
+      return "DIY Crafts + Supplies";
+    if (name.includes("card") || name.includes("tag") || name.includes("paper") || name.includes("gift"))
+      return "Gift Accessories & Paper Goods";
+    if (name.includes("pottery") || name.includes("dish") || name.includes("serving"))
+      return "Serving Dishes";
+    if (desc.includes("music") || name.includes("lynn blunt"))
+      return "Music";
+    if (name.includes("home") || desc.includes("decor") || name.includes("sign") || name.includes("pillow"))
+      return "Home Decor";
+  
     return "Uncategorized";
   };
-
+  
   const isNewProduct = (createdAt) => {
     const now = new Date();
     const created = new Date(createdAt);
     const daysDiff = (now - created) / (1000 * 60 * 60 * 24);
     return daysDiff <= 30;
   };
-
+  
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/products`)  
       .then((response) => {
@@ -59,7 +80,7 @@ const Shop = () => {
           category_name: categorizeProduct(product),
           created_at: product.created_at || new Date("2024-04-01"),
         }));
-
+  
         enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setProducts(enriched);
       })
@@ -68,7 +89,7 @@ const Shop = () => {
         setError("Failed to load products. Please try again later.");
       });
   }, []);
-
+  
   const filteredProducts = products.filter((product) => {
     const categoryMatch = selectedCategory
       ? product.category_name.toLowerCase() === selectedCategory.toLowerCase()
@@ -78,20 +99,24 @@ const Shop = () => {
       : true;
     return categoryMatch && vendorMatch;
   });
-
+  
   const categories = [
-    "Jewelry", "Clothing", "Accessories", "Bath + Beauty", "Home Decor",
-    "Food & Pantry", "Crafting", "Crystals", "Pets", "Music + Art",
-    "Knives + Axes", "Baby + Kids", "Cards + Gifting Supplies", "Home + Office"
+    "Jewelry", "Clothing + Wearables", "Bags", "Baby + Kids", "Bath + Body",
+    "Crystals + Healing", "Kitchen", "Pantry + Snacks", "Pets",
+    "Knives + Blades", "DIY Crafts + Supplies", "Home Decor",
+    "Gift Accessories & Paper Goods", "Serving Dishes", "Music"
   ];
-
+  
   const vendors = [
-    "Bohemian Heart Crafts", "Knit with Love by Carol", "Peddie Pieces", "The Knotty Celt",
-    "Candys Dandy Crafts", "Mos Craftworks", "Spoons & Stuff", "Tags & Tropics",
-    "Cosmically Connected", "Soap & Seed", "Knit's by Marsha Ann", "Cheese & Stuffs",
-    "Muddy Paws Raw", "Top to Toe Knits", "She Keeps Bees"
+    "Ocean Soul Clay", "Spoons and Stuff by Christine", "Candy Dandy Crafts", "Cosmically Connected",
+    "Mo's Craftworks", "She Keeps Bees", "Bohemian Heart Crafts", "Gravelle",
+    "Little Barn Homestead", "Old Soul Soap Company", "Soap & Seed",
+    "Muddy Paws Raw", "Top to Toe Hand Knits", "Knits by Marsha Ann",
+    "Knit With Love", "Lahaie Hats", "Tags & Tropics", "Peddie Pieces",
+    "Lynn Blunt", "A&S Crystals", "Sleeping Giant Biscotti", "Cheese and Stuffs",
+    "Maple Syrup Trillium", "The Knotty Celt"
   ];
-
+  
   return (
     <>
       <Helmet>
