@@ -3,7 +3,8 @@ const blogPosts = [
     id: "crochet-face-scrubbies",
     title: "Crochet Face Scrubbies – A Quick & Easy Pattern",
     date: "2025-04-30",
-    summary: "Learn how to make reusable, eco-friendly crochet face scrubbies in just a few rows. Perfect for gifts or self-care.",
+    summary:
+      "Learn how to make reusable, eco-friendly crochet face scrubbies in just a few rows. Perfect for gifts or self-care.",
     content: `
 ![Crochet Scrubbies](/images/scrubbiesPattern.jpg)
 
@@ -38,22 +39,31 @@ These scrubbies can be machine washed and reused endlessly.
 ![Finished Scrubbies](/images/scrubbies.jpg)
     `
   },
+
   {
     id: "mothers-day-gift-ideas",
     title: "Mother's Day Gift Ideas for Every Kind of Mom",
     date: "2025-05-01",
-    summary: "Thoughtful handmade gift ideas perfect for moms, grandmas, aunts, or anyone you call family.",
+    summary:
+      "Thoughtful handmade gift ideas perfect for moms, grandmas, aunts, or anyone you call family.",
     content: `
+> 💐 **FEATURED POST: A Handmade Gift Guide for Mother's Day**  
+> Thoughtful ideas for moms, grandmas, aunts — or anyone you call family.
+
+---
+
 Mother’s Day is a chance to show just how much the moms in our lives mean to us. Whether she’s the one who raised you, a grandmother who always has your back, or an aunt who’s more like a best friend, The Tangled Oak + Craft Collective has handmade gifts that speak directly to the heart. Here are some of our favorite gift ideas — all made by talented local vendors you can feel good about supporting.
+
+---
 
 ### 💎 1. For the Jewelry-Loving Mom
 
 If sparkle and statement pieces are her thing, our shop has no shortage of stunning options:
 
-- **Cosmically Connected** – one-of-a-kind wire-wrapped gemstone pendants  
-- **Ocean Soul Clay** – vibrant polymer clay earrings in earthy and playful palettes  
-- **Candy Dandy Crafts** – Indigenous beadwork in bold, colorful styles  
-- **Spoons & Stuff by Christine** – vintage silverware turned into story-rich jewelry  
+- **Cosmically Connected** – wire-wrapped gemstone pendants  
+- **Ocean Soul Clay** – vibrant polymer clay earrings  
+- **Candy Dandy Crafts** – bold Indigenous beadwork  
+- **Spoons & Stuff by Christine** – vintage silverware jewelry  
 
 → [Browse Jewelry Collection](https://the-tangled-oak-craft-collective.square.site/shop/jewelry/2)
 
@@ -61,11 +71,11 @@ If sparkle and statement pieces are her thing, our shop has no shortage of stunn
 
 ### 🧶 2. For the Cozy and Creative Mom
 
-Celebrate her love of comfort and craftsmanship with handmade wearables:
+Celebrate her love of comfort and craftsmanship:
 
-- **Top to Toe Knits** – soft, cozy sweaters for layering  
-- **Knit with Love by Carol** – knit shawls and hats  
-- **Knit’s by Marsha Ann** – crochet handbags and towel toppers for the kitchen  
+- **Top to Toe Knits** – cozy handmade sweaters  
+- **Knit with Love by Carol** – shawls and hats  
+- **Knit’s by Marsha Ann** – crochet handbags and towel toppers  
 
 → [Shop Clothing & Accessories](https://the-tangled-oak-craft-collective.square.site/shop/clothing--wearables/5)
 
@@ -73,10 +83,10 @@ Celebrate her love of comfort and craftsmanship with handmade wearables:
 
 ### 🛁 3. For the Homebody or Self-Care Queen
 
-Help her unwind with an at-home spa experience:
+Help her unwind at home:
 
-- **Soap & Seed** – skin-loving soaps, hand creams, sugar scrubs, and body sprays  
-- **Old Soul Soap Company** – artisan soaps, bath bombs, and mists  
+- **Soap & Seed** – artisan soaps, sugar scrubs, and hand creams  
+- **Old Soul Soap Company** – bath bombs, sprays, and more  
 - **She Keeps Bees** – beeswax candles and lip balms  
 
 → [Pamper Her – Bath & Body](https://the-tangled-oak-craft-collective.square.site/shop/bath--body/3)
@@ -85,11 +95,11 @@ Help her unwind with an at-home spa experience:
 
 ### 🍯 4. For the Foodie Mom
 
-A gift from the kitchen is always sweet — especially when it’s local:
+A gift from the kitchen is always sweet:
 
-- **Cheese and Stuffs** – jam towers perfect for charcuterie  
-- **Sleeping Giant Biscotti** – crunchy, flavorful treats for coffee lovers  
-- **She Keeps Bees** – natural honey in beautiful gift jars  
+- **Cheese and Stuffs** – jam towers for charcuterie  
+- **Sleeping Giant Biscotti** – handmade biscotti for coffee time  
+- **She Keeps Bees** – local honey in glass jars  
 
 → [Explore Pantry + Snacks](https://the-tangled-oak-craft-collective.square.site/shop/pantry--snacks/17)
 
@@ -97,12 +107,12 @@ A gift from the kitchen is always sweet — especially when it’s local:
 
 ### 🌿 5. For the Nature-Loving or Spiritually-Minded Mom
 
-Crystals, natural textures, and handmade decor to create her peaceful place:
+Crystals and calm for her sacred space:
 
-- **A&S Crystals** – raw gems, towers, and bundled gift sets  
-- **Spoons & Stuff by Christine** – radiant crystal suncatchers  
-- **Tags & Tropics** – Northern-inspired 8x10 prints and photo cards  
-- **Mo’s Craftworks** – intricate paper shadow boxes with earthy depth  
+- **A&S Crystals** – stone towers and gem bundles  
+- **Spoons & Stuff by Christine** – crystal suncatchers  
+- **Tags & Tropics** – Northern-inspired photo cards  
+- **Mo’s Craftworks** – paper shadow box art  
 
 → [See Crystals + Healing](https://the-tangled-oak-craft-collective.square.site/shop/crystals--healing/14)
 
