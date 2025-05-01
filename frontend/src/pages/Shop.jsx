@@ -104,7 +104,7 @@ const Shop = () => {
     "Jewelry", "Clothing + Wearables", "Bags", "Baby + Kids", "Bath + Body",
     "Crystals + Healing", "Kitchen", "Pantry + Snacks", "Pets",
     "Knives + Blades", "DIY Crafts + Supplies", "Home Decor",
-    "Gift Accessories & Paper Goods", "Serving Dishes", "Music"
+    "Gift Accessories & Paper Goods", "Pottery", "Music"
   ];
   
   const vendors = [
@@ -114,7 +114,7 @@ const Shop = () => {
     "Muddy Paws Raw", "Top to Toe Hand Knits", "Knits by Marsha Ann",
     "Knit With Love", "Lahaie Hats", "Tags & Tropics", "Peddie Pieces",
     "Lynn Blunt", "A&S Crystals", "Sleeping Giant Biscotti", "Cheese and Stuffs",
-    "Maple Syrup Trillium", "The Knotty Celt"
+    "Maple Syrup", "The Knotty Celt"
   ];
   
   return (
