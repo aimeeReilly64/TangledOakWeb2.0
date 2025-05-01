@@ -13,7 +13,7 @@ const ProductPage = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`/products`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/products`);
         if (!response.ok) {
           throw new Error("Failed to fetch product details.");
         }
@@ -90,7 +90,8 @@ const ProductPage = () => {
         <title>{product.name} | Tangled Oak</title>
         <meta name="description" content={product.description.slice(0, 150)} />
       </Helmet>
-<div className="main-content">
+
+      <div className="main-content">
         <div className="product-header">
           <h1>{product.name}</h1>
           <p className="product-price">
@@ -123,19 +124,21 @@ const ProductPage = () => {
         <button onClick={handleAddToCart} className="checkout-button">
           Add to Cart
         </button>
-</div>
-        {confirmation && (
-          <p style={{ color: "#2D5C47", marginTop: "1rem", fontWeight: "bold" }}>
-            {confirmation}
-          </p>
-        )}
-           <div className="product-image">
-          <img
-            src={product.image_url || "/fallback.jpg"}
-            alt={product.name}
-          /><br/>
-        </div>
       </div>
+
+      {confirmation && (
+        <p style={{ color: "#2D5C47", marginTop: "1rem", fontWeight: "bold" }}>
+          {confirmation}
+        </p>
+      )}
+
+      <div className="product-image">
+        <img
+          src={product.image_url || "/fallback.jpg"}
+          alt={product.name}
+        /><br />
+      </div>
+    </div>
   );
 };
 
