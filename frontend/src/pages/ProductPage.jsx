@@ -132,7 +132,7 @@ const ProductPage = () => {
         </p>
       )}
 
-      <div className="product-image">
+      <div className="product-image2">
         <img
           src={product.image_url || "/fallback.jpg"}
           alt={product.name}
