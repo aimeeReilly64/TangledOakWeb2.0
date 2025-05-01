@@ -66,7 +66,7 @@ These scrubbies can be machine washed and reused endlessly.
   - Intricate **hand-beaded jewelry** she won’t find anywhere else  
   - Elegant **vintage-inspired pieces** made from repurposed silverware  
   
-  👉 [Shop Jewelry](https://the-tangled-oak-craft-collective.square.site/shop/jewelry)
+  👉 [Shop Jewelry](https://the-tangled-oak-craft-collective.square.site/shop/jewelry/W7CZ26JA3PMVOHZ4FMWIBDUO)
   
   ---
   
@@ -77,7 +77,7 @@ These scrubbies can be machine washed and reused endlessly.
   - Soft **shawls and hats** made with love  
   - Whimsical **crocheted handbags** and kitchen toppers  
   
-  👉 [See Wearables](https://the-tangled-oak-craft-collective.square.site/shop/clothing--wearables)
+  👉 [See Wearables](https://the-tangled-oak-craft-collective.square.site/shop/clothing-wearables/SP3DDZOALJCP5OS7WY5RKG26)
   
   ---
   
@@ -88,7 +88,7 @@ These scrubbies can be machine washed and reused endlessly.
   - Fizzy **bath bombs** for a spa night in  
   - **Natural beeswax candles** for that cozy glow  
   
-  👉 [Browse Bath & Body](https://the-tangled-oak-craft-collective.square.site/shop/bath--body)
+  👉 [Browse Bath & Body](https://the-tangled-oak-craft-collective.square.site/shop/bath-body/FWIT7NCJTCP66VYF36YUGZWT?page=1&limit=30&sort_by=category_order&sort_order=asc)
   
   ---
   
@@ -99,7 +99,7 @@ These scrubbies can be machine washed and reused endlessly.
   - Crispy **artisan biscotti** for her coffee breaks  
   - **Locally sourced honey** in gift-ready glass jars  
   
-  👉 [Shop Gourmet Treats](https://the-tangled-oak-craft-collective.square.site/shop/pantry--snacks)
+  👉 [Shop Gourmet Treats](https://the-tangled-oak-craft-collective.square.site/shop/pantry-snacks/KKBPZZXAB227RNROCOQCRCOS?page=1&limit=30&sort_by=category_order&sort_order=asc)
   
   ---
   
@@ -110,7 +110,7 @@ These scrubbies can be machine washed and reused endlessly.
   - **Crystal suncatchers** that light up her space  
   - **Photo art & shadowboxes** with peaceful, earthy vibes  
   
-  👉 [See Spiritual Finds](https://the-tangled-oak-craft-collective.square.site/shop/crystals--healing)
+  👉 [See Spiritual Finds](https://the-tangled-oak-craft-collective.square.site/shop/crystals-healing/3JCIRV3O6OKSOS2DJRE434ZV?page=1&limit=30&sort_by=category_order&sort_order=asc)
   
   ---
   
