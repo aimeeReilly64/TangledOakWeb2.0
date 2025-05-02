@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { useCart } from "../context/CartContext";
 import "../css/styles.css";
 
 const ProductPage = () => {
   const { productId } = useParams();
+  const { addToCart } = useCart(); // ✅ Use context
   const [product, setProduct] = useState(null);
   const [error, setError] = useState("");
   const [selectedVariation, setSelectedVariation] = useState("");
@@ -14,18 +16,14 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/products`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch product details.");
-        }
+        if (!response.ok) throw new Error("Failed to fetch product details.");
         const data = await response.json();
         const foundProduct = data.products.find((p) => p.id === productId);
 
         if (!foundProduct) {
           setError("Product not found.");
         } else {
-          if (!foundProduct.created_at) {
-            foundProduct.created_at = new Date("2024-04-01");
-          }
+          foundProduct.created_at ||= new Date("2024-04-01");
           setProduct(foundProduct);
         }
       } catch (err) {
@@ -48,8 +46,7 @@ const ProductPage = () => {
       return;
     }
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const itemToAdd = {
+    addToCart({
       id: product.id,
       name: product.name,
       price: product.price,
@@ -57,32 +54,14 @@ const ProductPage = () => {
       image_url: product.image_url,
       variation: selectedVariation || null,
       quantity: 1,
-    };
+    });
 
-    const existingItemIndex = cart.findIndex(
-      (item) =>
-        item.id === itemToAdd.id &&
-        item.variation === itemToAdd.variation
-    );
-
-    if (existingItemIndex > -1) {
-      cart[existingItemIndex].quantity += 1;
-    } else {
-      cart.push(itemToAdd);
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
     setConfirmation("Added to cart!");
     setTimeout(() => setConfirmation(""), 2000);
   };
 
-  if (error) {
-    return <div className="product-page"><p>{error}</p></div>;
-  }
-
-  if (!product) {
-    return <div className="product-page"><p>Loading...</p></div>;
-  }
+  if (error) return <div className="product-page"><p>{error}</p></div>;
+  if (!product) return <div className="product-page"><p>Loading...</p></div>;
 
   return (
     <div className="product-page">
@@ -124,19 +103,20 @@ const ProductPage = () => {
         <button onClick={handleAddToCart} className="checkout-button">
           Add to Cart
         </button>
-      </div>
 
-      {confirmation && (
-        <p style={{ color: "#2D5C47", marginTop: "1rem", fontWeight: "bold" }}>
-          {confirmation}
-        </p>
-      )}
+        {confirmation && (
+          <p style={{ color: "#2D5C47", marginTop: "1rem", fontWeight: "bold" }}>
+            {confirmation}
+          </p>
+        )}
+      </div>
 
       <div className="product-image2">
         <img
           src={product.image_url || "/fallback.jpg"}
           alt={product.name}
-        /><br />
+          style={{ maxWidth: "100%", maxHeight: "400px", objectFit: "contain", display: "block", margin: "1rem auto" }}
+        />
       </div>
     </div>
   );

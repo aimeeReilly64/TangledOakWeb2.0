@@ -6,6 +6,8 @@ import fetch from "node-fetch";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import crypto from "crypto"; // ✅ NEW: for idempotency key
+
 dotenv.config();
 
 // Setup global fetch
@@ -20,7 +22,11 @@ const __dirname = path.dirname(__filename);
 // Serve frontend static files
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://www.tangledoak.ca', 'https://tangledoak.ca'],
+  methods: ['GET', 'POST'],
+  credentials: false
+}));
 app.use(express.json());
 
 // Square API Setup
@@ -35,7 +41,7 @@ const categoryMap = {
   "UUID_FOR_CRYSTALS": "Crystals",
 };
 
-// Fetch products from Square
+// ✅ Fetch products from Square
 app.get("/products", async (req, res) => {
   try {
     let allItems = [];
@@ -95,6 +101,57 @@ app.get("/products", async (req, res) => {
   }
 });
 
+// ✅ New: Checkout route
+app.post("/checkout", async (req, res) => {
+  const { cart } = req.body;
+
+  if (!Array.isArray(cart) || cart.length === 0) {
+    return res.status(400).json({ error: "Cart is empty." });
+  }
+
+  const lineItems = cart.map((item) => ({
+    name: item.name + (item.variation ? ` (${item.variation})` : ""),
+    quantity: item.quantity.toString(),
+    base_price_money: {
+      amount: Math.round(item.price * 100), // convert dollars to cents
+      currency: item.currency || "CAD",
+    },
+  }));
+
+  try {
+    const response = await fetch("https://connect.squareup.com/v2/online-checkout/payment-links", {
+      method: "POST",
+      headers: {
+        "Square-Version": "2025-02-20",
+        Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idempotency_key: crypto.randomUUID(),
+        order: {
+          location_id: process.env.SQUARE_LOCATION_ID,
+          line_items: lineItems,
+        },
+        checkout_options: {
+          redirect_url: "https://www.tangledoak.ca/thank-you",
+        },
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.payment_link?.url) {
+      res.json({ checkout_url: data.payment_link.url });
+    } else {
+      console.error("Square checkout error:", data);
+      res.status(500).json({ error: "Failed to create checkout session." });
+    }
+  } catch (err) {
+    console.error("Checkout error:", err);
+    res.status(500).json({ error: "Server error during checkout." });
+  }
+});
+
 // Catch-all for React frontend routing
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
@@ -104,4 +161,3 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
