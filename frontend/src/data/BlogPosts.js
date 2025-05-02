@@ -46,10 +46,7 @@ These scrubbies can be machine washed and reused endlessly.
     date: "2025-05-01",
     summary:
       "Thoughtful handmade gift ideas perfect for moms, grandmas, aunts, or anyone you call family.",
-    content: `
-  # Mother’s Day Gift Ideas for Every Kind of Mom  
-  *Thoughtful, handmade finds — because she deserves more than just flowers.*
-  
+    content: `  
   Mother’s Day is coming, and if you're anything like us, you're asking: *What can I give her that actually feels special?*
   
   Whether it’s your mom, grandma, aunt, or the woman who’s always had your back, we’ve rounded up a list of meaningful, locally made gifts — no last-minute candles from the drugstore here.
