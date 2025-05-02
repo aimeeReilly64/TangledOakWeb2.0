@@ -6,7 +6,8 @@ const blogPosts = [
     summary:
       "Learn how to make reusable, eco-friendly crochet face scrubbies in just a few rows. Perfect for gifts or self-care.",
     content: `
-![Crochet Scrubbies](/images/scrubbiePattern.jpg)
+![Crochet Scrubbies](/views/images/scrubbiePattern.jpg)
+
 
 Looking for an eco-friendly, handmade touch to your skincare routine?  
 These reusable crochet face scrubbies are soft, durable, and perfect for gifting or daily use.  
@@ -36,7 +37,7 @@ Row 4: Ch 1, sc in each st around. Sl st to join.
 Fasten off and weave in the ends. Pull the magic circle tight to close.  
 These scrubbies can be machine washed and reused endlessly.
 
-![Finished Scrubbies](./images/scrubbies.jpg)
+![Finished Scrubbies](/views/images/scrubbies.jpg)
     `
   },
 
