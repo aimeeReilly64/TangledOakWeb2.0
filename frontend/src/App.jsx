@@ -24,7 +24,8 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import Blog from "./pages/Blog";
 import Post from "./pages/Post";
 import CraftIdeas from "./pages/CraftIdeas";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ThankYou from "./pages/ThankYou";
 // Shared UI
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -81,9 +82,13 @@ const App = () => {
           <Route path="/craft-ideas" element={<CraftIdeas />} />
         </Routes>
       </div>
-
+      <Routes>
+  {/* other routes */}
+  <Route path="/thank-you" element={<ThankYou />} />
+</Routes>
       <Footer />
     </Router>
+    
   );
 };
 

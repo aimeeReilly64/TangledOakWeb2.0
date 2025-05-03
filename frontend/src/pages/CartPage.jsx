@@ -9,7 +9,7 @@ const CartPage = () => {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cart }),
+        body: JSON.stringify({ cart }),  // ← This is where we’ll inject the fulfillment method
       });
   
       const data = await response.json();
@@ -25,9 +25,12 @@ const CartPage = () => {
     }
   };
   
+  const [fulfillmentMethod, setFulfillmentMethod] = useState("Pickup");
+
 
   return (
     <div className="cart-page">
+      
       <h1>Your Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -49,6 +52,21 @@ const CartPage = () => {
             <strong>Total:</strong>{" "}
             ${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
           </p>
+          <div style={{ marginTop: "1rem" }}>
+  <label>
+    <strong>How would you like to receive your order?</strong>
+    <br />
+    <select
+      value={fulfillmentMethod}
+      onChange={(e) => setFulfillmentMethod(e.target.value)}
+      style={{ marginTop: "0.5rem" }}
+    >
+      <option value="Pickup">Pickup</option>
+      <option value="Delivery">Delivery</option>
+    </select>
+  </label>
+</div>
+
           <button onClick={handleCheckout} className="checkout-button" style={{ marginTop: "1rem" }}>
             Proceed to Checkout
           </button>

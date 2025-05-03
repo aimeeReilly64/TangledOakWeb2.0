@@ -12,6 +12,7 @@ dotenv.config();
 
 // Setup global fetch
 global.fetch = fetch;
+const { cart, fulfillmentMethod } = req.body;
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -131,6 +132,7 @@ app.post("/checkout", async (req, res) => {
         order: {
           location_id: process.env.SQUARE_LOCATION_ID,
           line_items: lineItems,
+          note: `Fulfillment: ${fulfillmentMethod || "Not specified"}`,  // 👈 this is the key addition
         },
         checkout_options: {
           redirect_url: "https://www.tangledoak.ca/thank-you",
