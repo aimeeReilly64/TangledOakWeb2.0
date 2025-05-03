@@ -6,13 +6,12 @@ import fetch from "node-fetch";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import crypto from "crypto"; // ✅ NEW: for idempotency key
+import crypto from "crypto"; // ✅ for idempotency key
 
 dotenv.config();
 
 // Setup global fetch
 global.fetch = fetch;
-const { cart, fulfillmentMethod } = req.body;
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -102,9 +101,10 @@ app.get("/products", async (req, res) => {
   }
 });
 
-
+// ✅ Checkout route — this is where req.body is valid
 app.post("/checkout", async (req, res) => {
   const { cart, fulfillmentMethod } = req.body;
+
   if (!Array.isArray(cart) || cart.length === 0) {
     return res.status(400).json({ error: "Cart is empty." });
   }
@@ -131,7 +131,7 @@ app.post("/checkout", async (req, res) => {
         order: {
           location_id: process.env.SQUARE_LOCATION_ID,
           line_items: lineItems,
-          note: `Fulfillment: ${fulfillmentMethod || "Not specified"}`,  // 👈 this is the key addition
+          note: `Fulfillment: ${fulfillmentMethod || "Not specified"}`,
         },
         checkout_options: {
           redirect_url: "https://www.tangledoak.ca/thank-you",
