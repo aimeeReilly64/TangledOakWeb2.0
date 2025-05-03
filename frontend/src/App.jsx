@@ -1,5 +1,6 @@
 // src/App.jsx
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
 import Home from "./pages/Home";
@@ -23,7 +24,7 @@ import OrderConfirmation from "./pages/OrderConfirmation";
 import Blog from "./pages/Blog";
 import Post from "./pages/Post";
 import CraftIdeas from "./pages/CraftIdeas";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import ThankYou from "./pages/ThankYou";
 // Shared UI
 import Header from "./components/Header";
