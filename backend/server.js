@@ -102,10 +102,9 @@ app.get("/products", async (req, res) => {
   }
 });
 
-// ✅ New: Checkout route
-app.post("/checkout", async (req, res) => {
-  const { cart } = req.body;
 
+app.post("/checkout", async (req, res) => {
+  const { cart, fulfillmentMethod } = req.body;
   if (!Array.isArray(cart) || cart.length === 0) {
     return res.status(400).json({ error: "Cart is empty." });
   }
