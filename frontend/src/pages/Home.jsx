@@ -7,6 +7,7 @@ const Home = () => {
     <>
       <Helmet>
         <title>Home | Tangled Oak + Craft Collective</title>
+        <meta name="p:domain_verify" content="6452806078603ed37e07237d4002c6ef"/>
         <meta
           name="description"
           content="Discover locally made artisanal goods, unique crafts, and one-of-a-kind finds at Tangled Oak + Craft Collective in North Bay, Ontario."
