@@ -126,6 +126,7 @@ const Shop = () => {
       <Helmet>
         <title>Shop Handmade Crafts | Tangled Oak + Craft Collective</title>
         <meta name="description" content="Discover handmade crafts from local artisans." />
+        <meta name="p:domain_verify" content="6452806078603ed37e07237d4002c6ef"/>
       </Helmet>
 
       <div className="shop-page">
