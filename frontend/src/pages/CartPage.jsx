@@ -6,10 +6,9 @@ const CartPage = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const [fulfillmentMethod, setFulfillmentMethod] = useState("Pickup");
 
-  const deliveryFee = fulfillmentMethod === "Delivery" ? 15 : 0;
-
+  const shippingFee = fulfillmentMethod === "Delivery" ? 15 : 0;
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const total = (subtotal + deliveryFee).toFixed(2);
+  const total = subtotal + shippingFee;
 
   const handleCheckout = async () => {
     try {
@@ -41,60 +40,40 @@ const CartPage = () => {
         <>
           <ul>
             {cart.map((item) => (
-              <li key={item.id} style={{ marginBottom: "1rem" }}>
-                <strong>{item.name}</strong> — ${item.price.toFixed(2)} × {item.quantity}
+              <li key={item.id} className="cart-item">
+                <strong>{item.name}</strong>
+                ${item.price.toFixed(2)} × {item.quantity}
                 <br />
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="checkout-button"
-                  style={{ marginTop: "0.25rem", background: "#ccc", color: "#000" }}
-                >
+                <button onClick={() => removeFromCart(item.id)} className="checkout-button" style={{ backgroundColor: "#ddd", color: "#000", marginTop: "0.5rem" }}>
                   Remove
                 </button>
               </li>
             ))}
           </ul>
 
-          <hr />
-
-          <p><strong>Subtotal:</strong> ${subtotal.toFixed(2)}</p>
-          {deliveryFee > 0 && (
-            <p><strong>Shipping:</strong> ${deliveryFee.toFixed(2)} (Flat Rate)</p>
-          )}
-          <p><strong>Total:</strong> ${total}</p>
-
-          <div style={{ marginTop: "1rem" }}>
-            <label>
-              <strong>How would you like to receive your order?</strong>
-              <br />
-              <select
-                value={fulfillmentMethod}
-                onChange={(e) => setFulfillmentMethod(e.target.value)}
-                style={{ marginTop: "0.5rem" }}
-              >
-                <option value="Pickup">Pickup</option>
-                <option value="Delivery">Delivery</option>
-              </select>
-            </label>
+          <div className="cart-summary">
+            <p>Subtotal: ${subtotal.toFixed(2)}</p>
+            {fulfillmentMethod === "Delivery" && <p>Shipping: $15.00</p>}
+            <p>Total: ${total.toFixed(2)}</p>
           </div>
 
-          <button onClick={handleCheckout} className="checkout-button" style={{ marginTop: "1rem" }}>
+          <div className="cart-select">
+            <label htmlFor="fulfillment">How would you like to receive your order?</label>
+            <select
+              id="fulfillment"
+              value={fulfillmentMethod}
+              onChange={(e) => setFulfillmentMethod(e.target.value)}
+            >
+              <option value="Pickup">Pickup</option>
+              <option value="Delivery">Delivery</option>
+            </select>
+          </div>
+
+          <button onClick={handleCheckout} className="checkout-button">
             Proceed to Checkout
           </button>
 
-          <br />
-
-          <button
-            onClick={clearCart}
-            style={{
-              marginTop: "0.5rem",
-              backgroundColor: "#f8d7da",
-              color: "#721c24",
-              border: "1px solid #f5c6cb",
-              padding: "0.5rem 1rem",
-              borderRadius: "5px"
-            }}
-          >
+          <button onClick={clearCart} className="clear-cart">
             Clear Cart
           </button>
         </>
