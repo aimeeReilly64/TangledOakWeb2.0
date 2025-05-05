@@ -30,7 +30,7 @@ const Home = () => {
               className="feature-img"
             />
             <br />
-            <a href="/shop" className="button">
+            <a href="https://the-tangled-oak-craft-collective.square.site" className="button">
               Browse All Products
             </a>
           </div>

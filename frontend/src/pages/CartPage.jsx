@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
+import "../css/styles.css";
 
 const CartPage = () => {
   const { cart, removeFromCart, clearCart } = useCart();
