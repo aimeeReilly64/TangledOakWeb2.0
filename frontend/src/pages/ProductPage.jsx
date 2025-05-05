@@ -74,7 +74,7 @@ const ProductPage = () => {
         <meta name="description" content={product.description.slice(0, 150)} />
       </Helmet>
 
-      <div className="main-content">
+      <div className="main-content product-card">
         <div className="product-header">
           <h1>{product.name}</h1>
           <p className="product-price">
@@ -86,6 +86,14 @@ const ProductPage = () => {
 
         <div className="product-description">
           <p>{product.description}</p>
+        </div>
+
+        <div className="product-image2">
+          <img
+            src={product.image_url || "/fallback.jpg"}
+            alt={product.name}
+            className="product-page-image"
+          />
         </div>
 
         {product.variations?.length > 0 && (
@@ -115,14 +123,6 @@ const ProductPage = () => {
             {confirmation}
           </p>
         )}
-
-        <div className="product-image2">
-          <img
-            src={product.image_url || "/fallback.jpg"}
-            alt={product.name}
-            className="product-page-image"
-          />
-        </div>
       </div>
     </div>
   );
