@@ -1,5 +1,3 @@
-// server.js
-
 import express from "express";
 import cors from "cors";
 import fetch from "node-fetch";
@@ -31,7 +29,7 @@ app.use(express.json());
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/search";
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 
-// Category mapping (update UUIDs)
+// Optional category mapping
 const categoryMap = {
   "UUID_FOR_JEWELRY": "Jewelry",
   "UUID_FOR_CLOTHING": "Clothing",
@@ -39,7 +37,7 @@ const categoryMap = {
   "UUID_FOR_CRYSTALS": "Crystals",
 };
 
-// ✅ Fetch all products including variations
+// ✅ Fetch all products with variations
 app.get("/products", async (req, res) => {
   try {
     let allItems = [];
@@ -59,9 +57,7 @@ app.get("/products", async (req, res) => {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`Square API error: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`Square API error: ${response.status}`);
 
       const data = await response.json();
       allItems = [...allItems, ...(data.objects || [])];
@@ -80,6 +76,7 @@ app.get("/products", async (req, res) => {
             price: (vData.price_money?.amount || 0) / 100,
             currency: vData.price_money?.currency || "CAD",
             stock: vData.inventory_alert_type || null,
+            image_url: vData.image_url || null
           };
         });
 
@@ -99,7 +96,7 @@ app.get("/products", async (req, res) => {
           category_id: item.item_data.category_id || null,
           category_name: categoryMap[item.item_data.category_id] || "Uncategorized",
           created_at: item.created_at || new Date().toISOString(),
-          variations, // ✅ Include all variation data
+          variations,
         };
       });
 
@@ -110,7 +107,7 @@ app.get("/products", async (req, res) => {
   }
 });
 
-// ✅ Checkout route
+// ✅ Checkout route with shipping fee
 app.post("/checkout", async (req, res) => {
   const { cart, fulfillmentMethod } = req.body;
 
@@ -127,12 +124,24 @@ app.post("/checkout", async (req, res) => {
     },
   }));
 
+  // ✅ Add flat-rate $15 shipping fee for delivery
+  if (fulfillmentMethod === "Delivery") {
+    lineItems.push({
+      name: "Flat Rate Shipping",
+      quantity: "1",
+      base_price_money: {
+        amount: 1500, // $15.00 in cents
+        currency: "CAD",
+      },
+    });
+  }
+
   try {
     const response = await fetch("https://connect.squareup.com/v2/online-checkout/payment-links", {
       method: "POST",
       headers: {
         "Square-Version": "2025-02-20",
-        Authorization: `Bearer ${process.env.SQUARE_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${SQUARE_ACCESS_TOKEN}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -162,7 +171,7 @@ app.post("/checkout", async (req, res) => {
   }
 });
 
-// Catch-all for frontend routing
+// React frontend catch-all
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
