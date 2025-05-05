@@ -6,7 +6,7 @@ import "../css/styles.css";
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const { addToCart } = useCart(); // ✅ Use context
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState("");
   const [selectedVariation, setSelectedVariation] = useState("");
@@ -46,13 +46,17 @@ const ProductPage = () => {
       return;
     }
 
+    const variationData = product.variations?.find(
+      (v) => v.name === selectedVariation
+    );
+
     addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
+      id: `${product.id}-${variationData?.sku || selectedVariation}`,
+      name: `${product.name}${variationData ? ` - ${variationData.name}` : ""}`,
+      price: variationData?.price || product.price,
       currency: product.currency,
       image_url: product.image_url,
-      variation: selectedVariation || null,
+      variation: variationData?.name || null,
       quantity: 1,
     });
 
@@ -74,7 +78,9 @@ const ProductPage = () => {
         <div className="product-header">
           <h1>{product.name}</h1>
           <p className="product-price">
-            ${product.price.toFixed(2)} {product.currency}
+            ${selectedVariation && product.variations?.length
+              ? product.variations.find((v) => v.name === selectedVariation)?.price.toFixed(2)
+              : product.price.toFixed(2)} {product.currency}
           </p>
         </div>
 
@@ -93,7 +99,7 @@ const ProductPage = () => {
               <option value="">Select</option>
               {product.variations.map((variation, index) => (
                 <option key={index} value={variation.name}>
-                  {variation.name}
+                  {variation.name} {variation.stock === 0 ? " (Sold Out)" : ""}
                 </option>
               ))}
             </select>
@@ -109,14 +115,14 @@ const ProductPage = () => {
             {confirmation}
           </p>
         )}
-      </div>
 
-      <div className="product-image2">
-        <img
-          src={product.image_url || "/fallback.jpg"}
-          alt={product.name}
-          style={{ maxWidth: "100%", maxHeight: "400px", objectFit: "contain", display: "block", margin: "1rem auto" }}
-        />
+        <div className="product-image2">
+          <img
+            src={product.image_url || "/fallback.jpg"}
+            alt={product.name}
+            className="product-page-image"
+          />
+        </div>
       </div>
     </div>
   );
