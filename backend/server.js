@@ -6,11 +6,9 @@ import fetch from "node-fetch";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import crypto from "crypto"; // ✅ for idempotency key
+import crypto from "crypto";
 
 dotenv.config();
-
-// Setup global fetch
 global.fetch = fetch;
 
 const app = express();
@@ -33,7 +31,7 @@ app.use(express.json());
 const SQUARE_API_URL = "https://connect.squareup.com/v2/catalog/search";
 const SQUARE_ACCESS_TOKEN = process.env.SQUARE_ACCESS_TOKEN;
 
-// Category mapping (Update UUIDs as needed)
+// Category mapping (update UUIDs)
 const categoryMap = {
   "UUID_FOR_JEWELRY": "Jewelry",
   "UUID_FOR_CLOTHING": "Clothing",
@@ -41,7 +39,7 @@ const categoryMap = {
   "UUID_FOR_CRYSTALS": "Crystals",
 };
 
-// ✅ Fetch products from Square
+// ✅ Fetch all products including variations
 app.get("/products", async (req, res) => {
   try {
     let allItems = [];
@@ -56,7 +54,7 @@ app.get("/products", async (req, res) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          object_types: ["ITEM"],
+          object_types: ["ITEM", "ITEM_VARIATION", "IMAGE"],
           ...(cursor && { cursor }),
         }),
       });
@@ -73,9 +71,19 @@ app.get("/products", async (req, res) => {
     const products = allItems
       .filter(item => item.type === "ITEM" && item.item_data && !item.is_deleted)
       .map(item => {
-        const variation = item.item_data.variations?.[0];
-        const priceData = variation?.item_variation_data?.price_money || { amount: 0, currency: "CAD" };
+        const variations = (item.item_data.variations || []).map(v => {
+          const vData = v.item_variation_data;
+          return {
+            id: v.id,
+            name: vData.name || "Default",
+            sku: vData.sku || null,
+            price: (vData.price_money?.amount || 0) / 100,
+            currency: vData.price_money?.currency || "CAD",
+            stock: vData.inventory_alert_type || null,
+          };
+        });
 
+        const defaultPrice = variations[0] || { price: 0, currency: "CAD" };
         const imageUrl =
           item.item_data.ecom_image_uris?.[0] ||
           "https://via.placeholder.com/300x300?text=No+Image";
@@ -84,13 +92,14 @@ app.get("/products", async (req, res) => {
           id: item.id,
           name: item.item_data.name || "Unnamed",
           description: item.item_data.description || "",
-          price: priceData.amount / 100,
-          currency: priceData.currency || "CAD",
+          price: defaultPrice.price,
+          currency: defaultPrice.currency,
           image_url: imageUrl,
           product_url: item.item_data.ecom_uri || "#",
           category_id: item.item_data.category_id || null,
           category_name: categoryMap[item.item_data.category_id] || "Uncategorized",
           created_at: item.created_at || new Date().toISOString(),
+          variations, // ✅ Include all variation data
         };
       });
 
@@ -101,7 +110,7 @@ app.get("/products", async (req, res) => {
   }
 });
 
-// ✅ Checkout route — this is where req.body is valid
+// ✅ Checkout route
 app.post("/checkout", async (req, res) => {
   const { cart, fulfillmentMethod } = req.body;
 
@@ -113,7 +122,7 @@ app.post("/checkout", async (req, res) => {
     name: item.name + (item.variation ? ` (${item.variation})` : ""),
     quantity: item.quantity.toString(),
     base_price_money: {
-      amount: Math.round(item.price * 100), // convert dollars to cents
+      amount: Math.round(item.price * 100),
       currency: item.currency || "CAD",
     },
   }));
@@ -153,12 +162,12 @@ app.post("/checkout", async (req, res) => {
   }
 });
 
-// Catch-all for React frontend routing
+// Catch-all for frontend routing
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
-// Start the server
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
