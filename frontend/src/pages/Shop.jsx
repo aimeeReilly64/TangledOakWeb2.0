@@ -11,6 +11,7 @@ const Shop = () => {
   const [error, setError] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const openModal = (product) => {
@@ -26,7 +27,7 @@ const Shop = () => {
   const categorizeProduct = (product) => {
     const name = (product.name || "").toLowerCase();
     const desc = (product.description || "").toLowerCase();
-  
+
     if (name.includes("earring") || name.includes("necklace") || name.includes("bracelet") || name.includes("ring"))
       return "Jewelry";
     if (name.includes("hat") || name.includes("shirt") || name.includes("sweater") || name.includes("shawl") || name.includes("scarf") || name.includes("tank") || name.includes("mitten") || name.includes("sock") || name.includes("slipper"))
@@ -57,19 +58,20 @@ const Shop = () => {
       return "Music";
     if (name.includes("home") || desc.includes("decor") || name.includes("sign") || name.includes("pillow"))
       return "Home Decor";
-  
+
     return "Uncategorized";
   };
-  
+
   const isNewProduct = (createdAt) => {
     const now = new Date();
     const created = new Date(createdAt);
     const daysDiff = (now - created) / (1000 * 60 * 60 * 24);
     return daysDiff <= 30;
   };
-  
+
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/products`)  
+    setLoading(true);
+    fetch(`${import.meta.env.VITE_API_URL}/products`)
       .then((response) => {
         if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
@@ -80,16 +82,18 @@ const Shop = () => {
           category_name: categorizeProduct(product),
           created_at: product.created_at || new Date("2024-04-01"),
         }));
-  
         enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setProducts(enriched);
       })
       .catch((error) => {
         console.error("❌ Fetch error:", error);
         setError("Failed to load products. Please try again later.");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
-  
+
   const filteredProducts = products.filter((product) => {
     const categoryMatch = selectedCategory
       ? product.category_name.toLowerCase() === selectedCategory.toLowerCase()
@@ -99,14 +103,14 @@ const Shop = () => {
       : true;
     return categoryMatch && vendorMatch;
   });
-  
+
   const categories = [
     "Jewelry", "Clothing + Wearables", "Bags", "Baby + Kids", "Bath + Body",
     "Crystals + Healing", "Kitchen", "Pantry + Snacks", "Pets",
     "Knives + Blades", "DIY Crafts + Supplies", "Home Decor",
     "Gift Accessories & Paper Goods", "Pottery", "Music"
   ];
-  
+
   const vendors = [
     "Ocean Soul Clay", "Spoons and Stuff by Christine", "Candy Dandy Crafts", "Cosmically Connected",
     "Mo's Craftworks", "She Keeps Bees", "Bohemian Heart Crafts", "Gravelle",
@@ -116,7 +120,7 @@ const Shop = () => {
     "Lynn Blunt", "A&S Crystals", "Sleeping Giant Biscotti", "Cheese and Stuffs",
     "Maple Syrup", "The Knotty Celt"
   ];
-  
+
   return (
     <>
       <Helmet>
@@ -162,27 +166,31 @@ const Shop = () => {
 
         {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
-        <div className="products-container">
-          {filteredProducts.filter((p) => p.product_url && p.product_url !== "#").length === 0 ? (
-            <p style={{ textAlign: "center" }}>No available products found.</p>
-          ) : (
-            filteredProducts
-              .filter((p) => p.product_url && p.product_url !== "#")
-              .map((product) => (
-                <div className="product-card" key={product.id}>
-                  {isNewProduct(product.created_at) && <div className="new-badge">New!</div>}
-                  <img src={product.image_url} alt={product.name} className="product-image" />
-                  <h3 className="product-name">
-                    {product.name.replace(/^New!\s*/i, "")}
-                  </h3>
-                  <p className="product-price">${product.price.toFixed(2)} {product.currency}</p>
-                  <button onClick={() => navigate(`/product/${product.id}`)} className="checkout-button">
-                    View Product
-                  </button>
-                </div>
-              ))
-          )}
-        </div>
+        {loading ? (
+          <div className="spinner"></div>
+        ) : (
+          <div className="products-container">
+            {filteredProducts.filter((p) => p.product_url && p.product_url !== "#").length === 0 ? (
+              <p style={{ textAlign: "center" }}>No available products found.</p>
+            ) : (
+              filteredProducts
+                .filter((p) => p.product_url && p.product_url !== "#")
+                .map((product) => (
+                  <div className="product-card" key={product.id}>
+                    {isNewProduct(product.created_at) && <div className="new-badge">New!</div>}
+                    <img src={product.image_url} alt={product.name} className="product-image" />
+                    <h3 className="product-name">
+                      {product.name.replace(/^New!\s*/i, "")}
+                    </h3>
+                    <p className="product-price">${product.price.toFixed(2)} {product.currency}</p>
+                    <button onClick={() => navigate(`/product/${product.id}`)} className="checkout-button">
+                      View Product
+                    </button>
+                  </div>
+                ))
+            )}
+          </div>
+        )}
       </div>
 
       <ProductModal isOpen={modalIsOpen} product={activeProduct} onClose={closeModal} />
