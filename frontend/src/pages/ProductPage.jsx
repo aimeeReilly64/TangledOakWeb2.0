@@ -10,6 +10,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState("");
   const [selectedVariation, setSelectedVariation] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const [confirmation, setConfirmation] = useState("");
 
   useEffect(() => {
@@ -36,7 +37,16 @@ const ProductPage = () => {
   }, [productId]);
 
   const handleVariationChange = (e) => {
-    setSelectedVariation(e.target.value);
+    const selectedName = e.target.value;
+    setSelectedVariation(selectedName);
+
+    const selectedVar = product.variations.find((v) => v.name === selectedName);
+
+    if (selectedVar?.image_url) {
+      setSelectedImage(selectedVar.image_url);
+    } else {
+      setSelectedImage(null);
+    }
   };
 
   const handleAddToCart = () => {
@@ -55,7 +65,7 @@ const ProductPage = () => {
       name: `${product.name}${variationData ? ` - ${variationData.name}` : ""}`,
       price: variationData?.price || product.price,
       currency: product.currency,
-      image_url: product.image_url,
+      image_url: variationData?.image_url || product.image_url,
       variation: variationData?.name || null,
       quantity: 1,
     });
@@ -90,7 +100,7 @@ const ProductPage = () => {
 
         <div className="product-image2">
           <img
-            src={product.image_url || "/fallback.jpg"}
+            src={selectedImage || product.image_url || "/fallback.jpg"}
             alt={product.name}
             className="product-page-image"
           />
