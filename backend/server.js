@@ -35,6 +35,9 @@ const categoryMap = {
   "UUID_FOR_CLOTHING": "Clothing",
   "UUID_FOR_ACCESSORIES": "Accessories",
   "UUID_FOR_CRYSTALS": "Crystals",
+  "UUID_FOR_HOME_DECOR": "Home Decor",
+  "UUID_FOR_ART": "Art",
+  "UUID_FOR_CANDLES": "Candles",
 };
 
 // ✅ Fetch all products with variations

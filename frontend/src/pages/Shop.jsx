@@ -24,41 +24,34 @@ const Shop = () => {
     setModalIsOpen(false);
   };
 
-  const categorizeProduct = (product) => {
-    const name = (product.name || "").toLowerCase();
-    const desc = (product.description || "").toLowerCase();
-
-    if (name.includes("earring") || name.includes("necklace") || name.includes("bracelet") || name.includes("ring"))
-      return "Jewelry";
-    if (name.includes("hat") || name.includes("shirt") || name.includes("sweater") || name.includes("shawl") || name.includes("scarf") || name.includes("tank") || name.includes("mitten") || name.includes("sock") || name.includes("slipper"))
-      return "Clothing + Wearables";
-    if (name.includes("bag") || name.includes("purse") || name.includes("tote"))
-      return "Bags";
-    if (name.includes("baby") || name.includes("kids") || desc.includes("child"))
-      return "Baby + Kids";
-    if (name.includes("soap") || name.includes("bath") || name.includes("scrub") || name.includes("beard") || name.includes("lotion") || name.includes("bomb"))
-      return "Bath + Body";
-    if (name.includes("crystal") || name.includes("gem") || name.includes("stone"))
-      return "Crystals + Healing";
-    if (name.includes("mug") || name.includes("glass"))
-      return "Kitchen";
-    if (name.includes("biscotti") || name.includes("cheese") || name.includes("maple") || name.includes("snack"))
-      return "Pantry + Snacks";
-    if (name.includes("pet") || name.includes("treat") || desc.includes("dog") || desc.includes("cat"))
-      return "Pets";
-    if (name.includes("knife") || name.includes("blade") || name.includes("dagger") || name.includes("axe"))
-      return "Knives + Blades";
-    if (name.includes("craft") || name.includes("kit") || name.includes("supply") || name.includes("bead") || name.includes("wire") || name.includes("pom"))
-      return "DIY Crafts + Supplies";
-    if (name.includes("card") || name.includes("tag") || name.includes("paper") || name.includes("gift"))
-      return "Gift Accessories & Paper Goods";
-    if (name.includes("pottery") || name.includes("dish") || name.includes("serving"))
-      return "Serving Dishes";
-    if (desc.includes("music") || name.includes("lynn blunt"))
-      return "Music";
-    if (name.includes("home") || desc.includes("decor") || name.includes("sign") || name.includes("pillow"))
-      return "Home Decor";
-
+  const categorizeProduct = (name, desc) => {
+    const lowerName = name.toLowerCase();
+    const lowerDesc = desc.toLowerCase();
+  
+    const categories = {
+      "Jewelry": ["earring", "necklace", "bracelet", "ring", "anklet", "brooch", "pin"],
+      "Clothing + Wearables": ["hat", "shirt", "sweater", "shawl", "scarf", "tank", "mitten", "sock", "slipper", "glove", "poncho"],
+      "Bags": ["bag", "purse", "tote", "wallet", "pouch", "clutch"],
+      "Baby + Kids": ["baby", "kids", "child", "toddler", "infant"],
+      "Bath + Body": ["soap", "bath", "scrub", "beard", "lotion", "bomb", "balm", "cream", "serum", "oil"],
+      "Crystals + Healing": ["crystal", "gem", "stone", "healing", "chakra"],
+      "Kitchen + Serveware": ["mug", "glass", "plate", "bowl", "utensil", "cutting board", "pottery", "dish", "serving"],
+      "Pantry + Snacks": ["biscotti", "cheese", "maple", "snack", "jam", "honey", "syrup", "tea", "coffee"],
+      "Pets": ["pet", "treat", "dog", "cat", "leash", "collar"],
+      "Knives + Blades": ["knife", "blade", "dagger", "axe"],
+      "DIY Crafts + Supplies": ["craft", "kit", "supply", "bead", "wire", "pom", "fabric", "pattern", "sticker"],
+      "Gift Accessories & Paper Goods": ["card", "tag", "paper", "gift", "wrapping", "stationery"],
+      "Music": ["music", "lynn blunt", "album", "cd", "record", "vinyl"],
+      "Home Decor": ["home", "sign", "pillow", "blanket", "frame", "lamp", "light", "lantern", "decor"],
+      "Holiday + Seasonal": ["christmas", "easter", "halloween", "holiday", "valentine", "seasonal"]
+    };
+  
+    for (const [category, keywords] of Object.entries(categories)) {
+      if (keywords.some(keyword => lowerName.includes(keyword) || lowerDesc.includes(keyword))) {
+        return category;
+      }
+    }
+  
     return "Uncategorized";
   };
 
@@ -80,7 +73,7 @@ const Shop = () => {
         const enriched = data.products.map((product) => ({
           ...product,
           category_name: categorizeProduct(product),
-          created_at: product.created_at || new Date("2024-04-01"),
+          created_at: product.created_at || new Date("2025-05-01"),
         }));
         enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setProducts(enriched);
@@ -112,7 +105,7 @@ const Shop = () => {
   ];
 
   const vendors = [
-    "Ocean Soul Clay", "Spoons and Stuff by Christine", "Candy Dandy Crafts", "Cosmically Connected",
+    "Ocean Soul Clay", "Spoons+Stuff", "Candy Dandy Crafts", "Cosmically Connected",
     "Mo's Craftworks", "She Keeps Bees", "Bohemian Heart Crafts", "Gravelle",
     "Little Barn Homestead", "Old Soul Soap Company", "Soap & Seed",
     "Muddy Paws Raw", "Top to Toe Hand Knits", "Knits by Marsha Ann",
