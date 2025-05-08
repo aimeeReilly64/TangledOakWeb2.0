@@ -24,36 +24,61 @@ const Shop = () => {
     setModalIsOpen(false);
   };
 
-  const categorizeProduct = (name, desc) => {
-    const lowerName = name.toLowerCase();
-    const lowerDesc = desc.toLowerCase();
+  const categorizeProduct = (product) => {
+    const name = (product.name || "").toLowerCase();
+    const desc = (product.description || "").toLowerCase();
   
-    const categories = {
-      "Jewelry": ["earring", "necklace", "bracelet", "ring", "anklet", "brooch", "pin"],
-      "Clothing + Wearables": ["hat", "shirt", "sweater", "shawl", "scarf", "tank", "mitten", "sock", "slipper", "glove", "poncho"],
-      "Bags": ["bag", "purse", "tote", "wallet", "pouch", "clutch"],
-      "Baby + Kids": ["baby", "kids", "child", "toddler", "infant"],
-      "Bath + Body": ["soap", "bath", "scrub", "beard", "lotion", "bomb", "balm", "cream", "serum", "oil"],
-      "Crystals + Healing": ["crystal", "gem", "stone", "healing", "chakra"],
-      "Kitchen + Serveware": ["mug", "glass", "plate", "bowl", "utensil", "cutting board", "pottery", "dish", "serving"],
-      "Pantry + Snacks": ["biscotti", "cheese", "maple", "snack", "jam", "honey", "syrup", "tea", "coffee"],
-      "Pets": ["pet", "treat", "dog", "cat", "leash", "collar"],
-      "Knives + Blades": ["knife", "blade", "dagger", "axe"],
-      "DIY Crafts + Supplies": ["craft", "kit", "supply", "bead", "wire", "pom", "fabric", "pattern", "sticker"],
-      "Gift Accessories & Paper Goods": ["card", "tag", "paper", "gift", "wrapping", "stationery"],
-      "Music": ["music", "lynn blunt", "album", "cd", "record", "vinyl"],
-      "Home Decor": ["home", "sign", "pillow", "blanket", "frame", "lamp", "light", "lantern", "decor"],
-      "Holiday + Seasonal": ["christmas", "easter", "halloween", "holiday", "valentine", "seasonal"]
-    };
+    if (name.includes("earring") || name.includes("necklace") || name.includes("bracelet") || name.includes("ring") || name.includes("anklet") || name.includes("brooch") || name.includes("pin"))
+      return "Jewelry";
   
-    for (const [category, keywords] of Object.entries(categories)) {
-      if (keywords.some(keyword => lowerName.includes(keyword) || lowerDesc.includes(keyword))) {
-        return category;
-      }
-    }
+    if (name.includes("hat") || name.includes("shirt") || name.includes("sweater") || name.includes("shawl") || name.includes("scarf") || name.includes("tank") || name.includes("mitten") || name.includes("sock") || name.includes("slipper") || name.includes("glove") || name.includes("poncho"))
+      return "Clothing + Wearables";
+  
+    if (name.includes("bag") || name.includes("purse") || name.includes("tote") || name.includes("wallet") || name.includes("pouch") || name.includes("clutch"))
+      return "Bags";
+  
+    if (name.includes("baby") || name.includes("kids") || desc.includes("child") || name.includes("toddler") || name.includes("infant"))
+      return "Baby + Kids";
+  
+    if (name.includes("soap") || name.includes("bath") || name.includes("scrub") || name.includes("beard") || name.includes("lotion") || name.includes("bomb") || name.includes("balm") || name.includes("cream") || name.includes("serum") || name.includes("oil"))
+      return "Bath + Body";
+  
+    if (name.includes("crystal") || name.includes("gem") || name.includes("stone") || name.includes("healing") || name.includes("chakra"))
+      return "Crystals + Healing";
+  
+    if (name.includes("mug") || name.includes("glass") || name.includes("plate") || name.includes("bowl") || name.includes("utensil") || name.includes("cutting board"))
+      return "Kitchen + Serveware";
+  
+    if (name.includes("biscotti") || name.includes("cheese") || name.includes("maple") || name.includes("snack") || name.includes("jam") || name.includes("honey") || name.includes("syrup") || name.includes("tea") || name.includes("coffee"))
+      return "Pantry + Snacks";
+  
+    if (name.includes("pet") || name.includes("treat") || desc.includes("dog") || desc.includes("cat") || name.includes("leash") || name.includes("collar"))
+      return "Pets";
+  
+    if (name.includes("knife") || name.includes("blade") || name.includes("dagger") || name.includes("axe"))
+      return "Knives + Blades";
+  
+    if (name.includes("craft") || name.includes("kit") || name.includes("supply") || name.includes("bead") || name.includes("wire") || name.includes("pom") || name.includes("fabric") || name.includes("pattern") || name.includes("sticker"))
+      return "DIY Crafts + Supplies";
+  
+    if (name.includes("card") || name.includes("tag") || name.includes("paper") || name.includes("gift") || name.includes("wrapping") || name.includes("stationery"))
+      return "Gift Accessories & Paper Goods";
+  
+    if (name.includes("pottery") || name.includes("dish") || name.includes("serving"))
+      return "Kitchen + Serveware";
+  
+    if (desc.includes("music") || name.includes("lynn blunt") || name.includes("album") || name.includes("cd") || name.includes("record") || name.includes("vinyl"))
+      return "Music";
+  
+    if (name.includes("home") || desc.includes("home") || name.includes("sign") || name.includes("pillow") || name.includes("blanket") || name.includes("frame") || name.includes("lamp") || name.includes("light") || name.includes("lantern") || name.includes("decor"))
+      return "Home Decor";
+  
+    if (name.includes("christmas") || name.includes("easter") || name.includes("halloween") || name.includes("holiday") || name.includes("valentine") || name.includes("seasonal"))
+      return "Holiday + Seasonal";
   
     return "Uncategorized";
   };
+  
 
   const isNewProduct = (createdAt) => {
     const now = new Date();
