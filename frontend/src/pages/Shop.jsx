@@ -126,7 +126,7 @@ const Shop = () => {
     "Jewelry", "Clothing + Wearables", "Bags", "Baby + Kids", "Bath + Body",
     "Crystals + Healing", "Kitchen", "Pantry + Snacks", "Pets",
     "Knives + Blades", "DIY Crafts + Supplies", "Home Decor",
-    "Gift Accessories & Paper Goods", "Pottery", "Music"
+    "Gift Accessories & Paper Goods", "Pottery", "Music", "Seasonal"
   ];
 
   const vendors = [
@@ -134,7 +134,7 @@ const Shop = () => {
     "Mo's Craftworks", "She Keeps Bees", "Bohemian Heart Crafts", "Gravelle",
     "Little Barn Homestead", "Old Soul Soap Company", "Soap & Seed",
     "Muddy Paws Raw", "Top to Toe Hand Knits", "Knits by Marsha Ann",
-    "Knit With Love", "Lahaie Hats", "Tags & Tropics", "Peddie Pieces",
+    "Knit With Love by Carol", "Lahaie Hats", "Tags & Tropics", "Peddie Pieces",
     "Lynn Blunt", "A&S Crystals", "Sleeping Giant Biscotti", "Cheese and Stuffs",
     "Maple Syrup", "The Knotty Celt"
   ];
