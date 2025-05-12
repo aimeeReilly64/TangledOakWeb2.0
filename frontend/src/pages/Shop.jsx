@@ -134,7 +134,7 @@ const Shop = () => {
     "Knit With Love by Carol", "Ocean Soul Clay", "Peddie Pieces", "The Knotty Celt",  "Candy Dandy Crafts", "Spoons + Stuff", "Cosmically Connected",
     "Mo's Craftworks", "She Keeps Bees", "Cheese and Stuffs","Muddy Paws Raw", "Top to Toe Hand Knits", "Knits by Marsha Ann",
      "Lahaie Hats", "Tags & Tropics", "Lynn Blunt", "A&S Crystals", "Sleeping Giant Biscotti", "DIY + Craft Supplies", "Letichat Creations"
-    "Maple Syrup"
+    ,"Maple Syrup"
   ];
 
   return (
