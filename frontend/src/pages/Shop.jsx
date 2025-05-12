@@ -123,20 +123,18 @@ const Shop = () => {
   });
 
   const categories = [
-    "Jewelry", "Clothing + Wearables", "Bags", "Baby + Kids", "Bath + Body",
-    "Crystals + Healing", "Kitchen", "Pantry + Snacks", "Pets",
-    "Knives + Blades", "DIY Crafts + Supplies", "Home Decor",
+    "Jewelry", "Necklaces", "Earrings", "Bracelets", "Rings", "Clothing + Wearables","Hats", "Bags", "Shirts + Sweaters", "Slippers + Socks", "Mitts", "Scarves + Shawls", "Baby + Kids", "Bath + Body",
+    ,"Soap", "Hair", "Bath", "Face", "Crystals + Healing", "Stone Towers", "Kitchen", "Pantry + Snacks", "Mugs", "Platters","Pets",
+    "Knives + Blades", "DIY Crafts + Supplies", "Home Decor", "Photography", "Art", "Home", "Decor", "Kitchen + Serveware", "Plants",
+    "Pantry + Snacks", "Pet Supplies", "Pet Treats",
     "Gift Accessories & Paper Goods", "Pottery", "Music", "Seasonal"
   ];
 
   const vendors = [
-    "Ocean Soul Clay", "Spoons+Stuff", "Candy Dandy Crafts", "Cosmically Connected",
-    "Mo's Craftworks", "She Keeps Bees", "Bohemian Heart Crafts", "Gravelle",
-    "Little Barn Homestead", "Old Soul Soap Company", "Soap & Seed",
-    "Muddy Paws Raw", "Top to Toe Hand Knits", "Knits by Marsha Ann",
-    "Knit With Love by Carol", "Lahaie Hats", "Tags & Tropics", "Peddie Pieces",
-    "Lynn Blunt", "A&S Crystals", "Sleeping Giant Biscotti", "Cheese and Stuffs",
-    "Maple Syrup", "The Knotty Celt"
+    "Knit With Love by Carol", "Ocean Soul Clay", "Peddie Pieces", "The Knotty Celt",  "Candy Dandy Crafts", "Spoons + Stuff", "Cosmically Connected",
+    "Mo's Craftworks", "She Keeps Bees", "Cheese and Stuffs","Muddy Paws Raw", "Top to Toe Hand Knits", "Knits by Marsha Ann",
+     "Lahaie Hats", "Tags & Tropics", "Lynn Blunt", "A&S Crystals", "Sleeping Giant Biscotti", "DIY + Craft Supplies", "Letichat Creations"
+    "Maple Syrup"
   ];
 
   return (
