@@ -82,12 +82,13 @@ const Shop = () => {
   if (name.includes("mug") || name.includes("cup") || name.includes("glass") || name.includes("plate") || name.includes("bowl"))
     return "Mugs + Drinkware";
 
-  if (name.includes("utensil") || name.includes("cutting board") || name.includes("spoon") || name.includes("fork") || name.includes("knife"))
+  if (name.includes("utensil") || name.includes("cutting board") || name.includes("spoon") || name.includes("fork") ||name.includes("kitchen") || name.includes("baking") || name.includes("pan") || name.includes("pot") || name.includes("bowl") || name.includes("whisk") || name.includes("grater") || name.includes("pour"))
     return "Kitchen + Utensils";
+
 if (name.includes("diy") || name.includes("brush") || name.includes("paint") )
     return "DIY Crafts + Supplies";
-  
-  if (name.includes("biscotti") || name.includes("cheese") || name.includes("maple") || name.includes("snack") || name.includes("jam") || name.includes("honey") || name.includes("syrup") || name.includes("tea") || name.includes("coffee"))
+
+  if (name.includes("biscotti") || name.includes("pantry") || name.includes("snack") || name.includes("taco")|| name.includes("cheese") || name.includes("maple") || name.includes("snack") || name.includes("jam") || name.includes("honey") || name.includes("syrup") || name.includes("tea") || name.includes("coffee"))
     return "Pantry + Snacks";
 
   if (name.includes("pet") || name.includes("treat") || desc.includes("dog") || desc.includes("cat") || name.includes("leash") || name.includes("collar"))
