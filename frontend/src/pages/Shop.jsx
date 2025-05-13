@@ -112,7 +112,7 @@ if (name.includes("diy") || name.includes("brush") || name.includes("paint") )
   if (name.includes("photograph") || name.includes("photo") || name.includes("print") || name.includes("canvas") || name.includes("artwork") || name.includes("painting") || name.includes("drawing") || name.includes("illustration"))
     return "Photography + Art";
 
-  if (name.includes("home") || desc.includes("wall") || name.includes("sign") || name.includes("pillow") || name.includes("blanket") || name.includes("frame") || name.includes("decor") || name.includes("light") || name.includes("lantern") || name.includes("hang"))
+  if (name.includes("home") || desc.includes("frame") ||desc.includes("wall") || name.includes("sign") || name.includes("pillow") || name.includes("blanket") || name.includes("art") || name.includes("decor") || name.includes("light") || name.includes("lantern") || name.includes("hang"))
     return "Home Decor";
 
   if (name.includes("christmas") || name.includes("easter") || name.includes("halloween") || name.includes("holiday") || name.includes("valentine") || name.includes("seasonal"))
@@ -164,6 +164,7 @@ if (name.includes("diy") || name.includes("brush") || name.includes("paint") )
       : true;
     return categoryMatch && vendorMatch;
   });
+  
 const categories = [
   "Necklaces",
   "Earrings",
@@ -197,10 +198,28 @@ const categories = [
 ];
 
   const vendors = [
-    "Knit With Love by Carol", "Ocean Soul Clay", "Peddie Pieces", "The Knotty Celt",  "Candy Dandy Crafts", "Spoons + Stuff", "Cosmically Connected",
-    "Mo's Craftworks", "She Keeps Bees", "Cheese and Stuffs","Muddy Paws Raw", "Top to Toe Hand Knits", "Knits by Marsha Ann",
-     "Lahaie Hats", "Tags & Tropics", "Lynn Blunt", "A&S Crystals", "Sleeping Giant Biscotti", "DIY + Craft Supplies", "Letichat Creations"
-    ,"Maple Syrup"
+    "Knit With Love by Carol", 
+    "Ocean Soul Clay", 
+    "Peddie Pieces", 
+    "The Knotty Celt", 
+    "Candy Dandy Crafts", 
+    "Spoons + Stuff", 
+    "A&S Crystals", 
+    "Cosmically Connected",
+    "Mo's Craftworks", 
+    "She Keeps Bees", 
+    "Cheese and Stuffs",
+    "Soap & Seed",
+    "Muddy Paws Raw", 
+    "Top to Toe Hand Knits", 
+    "Knits by Marsha Ann",
+     "Lahaie Hats", 
+     "Tags & Tropics", 
+     "Lynn Blunt", 
+    "Letichat Creations",
+     "Sleeping Giant Biscotti",
+    "DIY + Craft Supplies",
+    "Maple Syrup"
   ];
 
   return (
