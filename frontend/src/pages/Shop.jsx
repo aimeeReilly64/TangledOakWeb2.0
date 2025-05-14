@@ -207,7 +207,7 @@ const categories = [
     "Peddie Pieces", 
     "The Knotty Celt", 
     "Candy Dandy Crafts", 
-    "Spoons + Stuff", 
+    "Spoons & Stuff", 
     "A&S Crystals", 
     "Cosmically Connected",
     "Mo's Craftworks", 
