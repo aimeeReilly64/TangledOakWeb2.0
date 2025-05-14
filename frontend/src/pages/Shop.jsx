@@ -130,30 +130,32 @@ if (name.includes("diy") || name.includes("brush") || name.includes("paint") )
     return daysDiff <= 30;
   };
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(`${import.meta.env.VITE_API_URL}/products`)
-      .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        return response.json();
-      })
-      .then((data) => {
-        const enriched = data.products.map((product) => ({
-          ...product,
-          category_name: categorizeProduct(product),
-          created_at: product.created_at || new Date("2025-05-01"),
-        }));
-        enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-        setProducts(enriched);
-      })
-      .catch((error) => {
-        console.error("❌ Fetch error:", error);
-        setError("Failed to load products. Please try again later.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+ useEffect(() => {
+  setLoading(true);
+  fetch(`${import.meta.env.VITE_API_URL}/products`)
+    .then((response) => {
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+    })
+    .then((data) => {
+      const enriched = data.products.map((product) => ({
+        ...product,
+        category_name: categorizeProduct(product),
+        created_at: product.created_at || new Date("2025-05-01"),
+        product_url: product.product_url || product.url || product.ecom_url || "#",
+      }));
+      enriched.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      setProducts(enriched);
+    })
+    .catch((error) => {
+      console.error("❌ Fetch error:", error);
+      setError("Failed to load products. Please try again later.");
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+}, []);
+
 
   const filteredProducts = products.filter((product) => {
     const categoryMatch = selectedCategory
