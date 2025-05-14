@@ -159,9 +159,11 @@ if (name.includes("diy") || name.includes("brush") || name.includes("paint") )
     const categoryMatch = selectedCategory
       ? product.category_name.toLowerCase() === selectedCategory.toLowerCase()
       : true;
+
     const vendorMatch = selectedVendor
       ? product.description.toLowerCase().includes(selectedVendor.toLowerCase())
       : true;
+
     return categoryMatch && vendorMatch;
   });
   
