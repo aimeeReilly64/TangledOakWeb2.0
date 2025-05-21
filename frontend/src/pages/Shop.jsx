@@ -40,9 +40,9 @@ const Shop = () => {
 
   // General jewelry fallback
   if (
-   name.includes("anklet") || name.includes("brooch") || name.includes("pin")
+   name.includes("broach") || name.includes("pin") || name.includes("jewelry")
   )
-    return "Jewelry";
+    return "Broaches + Pins";
 
   // Clothing breakdown
   if (name.includes("hat") || name.includes("beanie") || name.includes("cap") || name.includes("toque"))
@@ -52,35 +52,34 @@ const Shop = () => {
     return "Shirts + Sweaters";
   if (name.includes("slipper") || name.includes("sock") || name.includes("foot"))
     return "Slippers + Socks";
-  if (name.includes("scarf") || name.includes("shawl") || name.includes("wrap"))
+  if (name.includes("scarf") || name.includes("shawl"))
     return "Scarves + Shawls";
   if (name.includes("mitten") || name.includes("glove"))
     return "Mitts";
-  if (
-    name.includes("hat") || name.includes("shirt") || name.includes("sweater") ||
-    name.includes("shawl") || name.includes("scarf") || name.includes("tank") ||
-    name.includes("mitten") || name.includes("sock") || name.includes("slipper") ||
-    name.includes("glove") || name.includes("poncho")
-  )
-    return "Clothing + Wearables";
+
 
   if (name.includes("bag") || name.includes("purse") || name.includes("tote") || name.includes("wallet") || name.includes("pouch") || name.includes("clutch"))
     return "Bags";
 
-  if (name.includes("baby") || name.includes("kids") || desc.includes("child") || name.includes("toddler") || name.includes("infant"))
+  if (name.includes("baby") || name.includes("kids") || desc.includes("child") || name.includes("toddler") || name.includes("infant") || name.includes("newborn") || name.includes("diaper") || name.includes("onesie") || name.includes("2T") || name.includes("3T") || name.includes("4T") || name.includes("5T"))
     return "Baby + Kids";
 
-  if (name.includes("soap") || name.includes("bath") || name.includes("scrub") || name.includes("beard") || name.includes("lotion") || name.includes("bomb") || name.includes("balm") || name.includes("cream") || name.includes("serum") || name.includes("skin") || name.includes("oil"))
-    return "Bath + Body";
+  if (name.includes("soap")) 
+    return "Soap";
+  if (name.includes("bath bomb") || name.includes("bath fizzy") || name.includes("scrub") || name.includes("bath salt") || name.includes("bath soak") || name.includes("bath melt") || name.includes("bath oil") || name.includes("bath tea"))
+    return "Bath Bombs + Sugar Scrubs";
 
-  if (name.includes("plant") || name.includes("flower") || name.includes("succulent") || name.includes("herb") || name.includes("seed") || name.includes("planter") || name.includes("garden"))
+  if (name.includes("lip") || name.includes("balm") || name.includes("gloss") || name.includes("stick") || name.includes("scrub"))
+    return "Lips + Face";
+
+  if (name.includes("plant") || name.includes("flower") || name.includes("succulent") || name.includes("herb") || name.includes("planter") || name.includes("garden"))
     return "Plants + Gardening";
 
   if (name.includes("crystal") || name.includes("gem") || name.includes("stone") || name.includes("healing") || name.includes("agate") || name.includes("pendulum") || name.includes("spheres") || name.includes("wands") || name.includes("orb") || name.includes("tumble") || name.includes("rock"))
     return "Crystals + Healing";
 
-  if (name.includes("mug") || name.includes("cup") || name.includes("glass") || name.includes("plate") || name.includes("bowl"))
-    return "Mugs + Drinkware";
+  if (name.includes("mug") || name.includes("cup") || name.includes("glass") || name.includes("plate") || name.includes("bowl") || name.includes("pitcher") || name.includes("tumbler") || name.includes("flask")  || name.includes("jar") || name.includes("pottery") || name.includes("platter"))
+    return "Mugs + Platters";
 
   if (name.includes("utensil") || name.includes("cutting board") || name.includes("spoon") || name.includes("fork") ||name.includes("kitchen") || name.includes("baking") || name.includes("pan") || name.includes("pot") || name.includes("bowl") || name.includes("whisk") || name.includes("grater") || name.includes("pour"))
     return "Kitchen + Utensils";
@@ -94,8 +93,7 @@ if (name.includes("diy") || name.includes("brush") || name.includes("paint") )
   if (name.includes("pet") || name.includes("treat") || desc.includes("dog") || desc.includes("cat") || name.includes("leash") || name.includes("collar"))
     return "Pets";
 
-  if (name.includes("knife") || name.includes("blade") || name.includes("dagger") || name.includes("axe"))
-    return "Knives + Blades";
+  if (name.includes("knife") || name.includes("blade") || name.includes("dagger") || name.includes("axe") || name.includes("sword") || name.includes("scissors") || name.includes("shears") || name.includes("cutter") || name.includes("hatchet"))    return "Knives + Blades";
 
   if (name.includes("craft") || name.includes("kit") || name.includes("supply") || name.includes("bead") || name.includes("wire") || name.includes("pom") || name.includes("fabric") || name.includes("pattern") || name.includes("sticker"))
     return "DIY Crafts + Supplies";
@@ -174,13 +172,12 @@ const categories = [
   "Earrings",
   "Bracelets",
   "Rings",
-  "Jewelry",
+  "Broaches + Pins",
   "Hats",
   "Shirts + Sweaters",
   "Slippers + Socks",
   "Scarves + Shawls",
   "Mitts",
-  "Clothing + Wearables",
   "Bags",
   "Baby + Kids",
   "Bath + Body",
