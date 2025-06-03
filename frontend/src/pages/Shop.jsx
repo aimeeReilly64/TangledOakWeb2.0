@@ -37,8 +37,6 @@ const Shop = () => {
     return "Bracelets";
   if (name.includes("ring") || name.includes("band") || name.includes("gemstone") || name.includes("wire"))
     return "Rings";
-
-  // General jewelry fallback
   if (
    name.includes("broach") || name.includes("pin") || name.includes("jewelry")
   )
@@ -110,12 +108,15 @@ if (name.includes("diy") || name.includes("brush") || name.includes("paint") )
   if (name.includes("photograph") || name.includes("photo") || name.includes("print") || name.includes("canvas") || name.includes("artwork") || name.includes("painting") || name.includes("drawing") || name.includes("illustration"))
     return "Photography + Art";
 
-  if (name.includes("home") || desc.includes("frame") ||desc.includes("wall") || name.includes("sign") || name.includes("pillow") || name.includes("blanket") || name.includes("art") || name.includes("decor") || name.includes("light") || name.includes("lantern") || name.includes("hang"))
+  if (name.includes("home") || name.includes("hanging") || name.includes("macrame") || desc.includes("frame") ||desc.includes("wall") || name.includes("sign") || name.includes("pillow") || name.includes("blanket") || name.includes("art") || name.includes("decor") || name.includes("light") || name.includes("lantern") || name.includes("hang"))
     return "Home Decor";
 
-  if (name.includes("christmas") || name.includes("easter") || name.includes("halloween") || name.includes("holiday") || name.includes("valentine") || name.includes("seasonal"))
+  if (name.includes("christmas") || name.includes("easter") || name.includes("halloween") || name.includes("holiday") || name.includes("valentine") || name.includes("seasonal") || name.includes("spring") ||
+      name.includes("summer") || name.includes("fall") || name.includes("winter") || name.includes("new year") || name.includes("thanksgiving") || name.includes("hanukkah") || name.includes("diwali"))
     return "Holiday + Seasonal";
 
+  // Default case for uncategorized products
+  if (!name || name.trim() === "" || !desc || desc.trim() === "") 
   return "Uncategorized";
 };
 
