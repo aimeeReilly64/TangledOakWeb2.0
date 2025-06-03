@@ -52,7 +52,7 @@ const Home = () => {
 
           {/* Hero Section with Two Images */}
           <div className="context-box">
-
+            
             <h2>Discover Handmade Treasures, Crafted with Heart</h2>
           
               <img
@@ -108,8 +108,6 @@ const Home = () => {
                 title="Tangled Oak Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2755.934228632341!2d-79.46534059999999!3d46.311143699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4d29aa9cbd52da61%3A0x5ba29b1fbf8394f9!2s150%20Oak%20St%20W%2C%20North%20Bay%2C%20ON%20P1B%202S7!5e0!3m2!1sen!2sca!4v1742343151470!5m2!1sen!2sca"
               ></iframe>
-                          <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0AGLjxXFxeqjrXSTThAs5BGFcdZnSajJTqjocRpWG4wgSVAU1aSffCfBkHY5TiUWYl%26id%3D61556577491923&show_text=true&width=500" width="500" height="1119" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                          </iframe>
             </div>
           </div>
         </div>
