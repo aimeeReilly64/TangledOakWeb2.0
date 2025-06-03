@@ -80,7 +80,7 @@ const Shop = () => {
   const categories = [
     "Necklaces", "Earrings", "Bracelets", "Rings", "Broaches + Pins", "Hats", "Shirts + Sweaters",
     "Slippers + Socks", "Scarves + Shawls", "Mitts", "Bags", "Baby + Kids", "Bath + Body",
-    "Plants + Gardening", "Crystals + Healing", "Mugs + Drinkware", "Kitchen + Utensils",
+    "Plants + Gardening",  "Mugs + Drinkware", "Kitchen + Utensils",
     "Pantry + Snacks", "Pets", "Knives + Blades", "DIY Crafts + Supplies",
     "Gift Accessories & Paper Goods", "Pottery", "Music", "Photography + Art",
     "Home Decor", "Holiday + Seasonal", "Uncategorized"
@@ -88,7 +88,7 @@ const Shop = () => {
 
   const vendors = [
     "Knit With Love by Carol", "Ocean Soul Clay", "Peddie Pieces", "The Knotty Celt",
-    "Candy Dandy Crafts", "Spoons & Stuff", "A&S Crystals", "Cosmically Connected",
+    "Candy Dandy Crafts", "Spoons & Stuff",  "Cosmically Connected",
     "Mo's Craftworks", "She Keeps Bees", "Cheese and Stuffs", "Soap & Seed", "Muddy Paws Raw",
     "Top to Toe Hand Knits", "Knits by Marsha Ann", "Lahaie Hats", "Tags & Tropics",
     "Lynn Blunt", "Letichat Creations", "Sleeping Giant Biscotti", "DIY + Craft Supplies",
@@ -146,7 +146,7 @@ const Shop = () => {
             ) : (
               filteredProducts
                 .filter((p) => p.product_url && p.product_url !== "#")
-                .map((product) => (
+                .map((product) => 
                   <div className="product-card" key={product.id}>
                     {isNewProduct(product.created_at) && <div className="new-badge">New!</div>}
                     <img src={product.image_url} alt={product.name} className="product-image" />

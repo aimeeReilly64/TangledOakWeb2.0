@@ -52,6 +52,7 @@ const Home = () => {
 
           {/* Hero Section with Two Images */}
           <div className="context-box">
+            <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fpermalink.php%3Fstory_fbid%3Dpfbid0AGLjxXFxeqjrXSTThAs5BGFcdZnSajJTqjocRpWG4wgSVAU1aSffCfBkHY5TiUWYl%26id%3D61556577491923&show_text=true&width=500" width="500" height="1119" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             <h2>Discover Handmade Treasures, Crafted with Heart</h2>
           
               <img
