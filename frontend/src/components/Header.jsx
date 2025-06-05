@@ -21,11 +21,11 @@ const Header = () => {
       {/* Main Navigation */}
       <div className="nav-links">
         <Link to="/" className="nav-link">Home</Link>
-        <Link to="/shop" className="nav-link">Shop</Link>
         <Link to="/about" className="nav-link">About Us</Link>
         <Link to="/blog" className="nav-link">Blog</Link>
+         <Link to="/shop" className="nav-link">Shop</Link>
         <Link to="/craft" className="nav-link">Craft Ideas</Link>
-        <Link to="/cart" className= "nav-link"> Cart</Link>
+      
   </div>
     </header>
   );

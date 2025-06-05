@@ -31,6 +31,14 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute"; 
 
+const ExternalRedirect = ({ url }) => {
+  React.useEffect(() => {
+    window.location.href = url;
+  }, [url]);
+
+  return null; // Render nothing while redirecting
+};
+
 const App = () => {
   return (
     <Router>
@@ -39,7 +47,12 @@ const App = () => {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
+         <Route
+  path="/shop"
+  element={
+    <ExternalRedirect url="https://the-tangled-oak-craft-collective.square.site/s/shop" />
+  }
+/>
           <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/about" element={<About />} />
