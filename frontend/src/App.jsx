@@ -20,24 +20,23 @@ import ApproveVendor from "./pages/ApproveVendor";
 import CreateListing from "./pages/CreateListing";
 import MyListings from "./pages/MyListings";
 import ListingDetails from "./pages/ListingDetails";
-
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Blog from "./pages/Blog";
 import Post from "./pages/Post";
 import CraftIdeas from "./pages/CraftIdeas";
-
 import ThankYou from "./pages/ThankYou";
+
 // Shared UI
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ProtectedRoute from "./components/ProtectedRoute"; 
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const ExternalRedirect = ({ url }) => {
   React.useEffect(() => {
     window.location.href = url;
   }, [url]);
 
-  return null; // Render nothing while redirecting
+  return null;
 };
 
 const App = () => {
@@ -48,12 +47,13 @@ const App = () => {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-         <Route
-  path="/shop"
-  element={
-    <ExternalRedirect url="https://the-tangled-oak-craft-collective.square.site/s/shop" />
-  }
-/>
+          <Route
+            path="/shop"
+            element={
+              <ExternalRedirect url="https://the-tangled-oak-craft-collective.square.site/s/shop" />
+            }
+          />
+          <Route path="/vendors" element={<VendorInfo />} /> {/* 👈 New route added here */}
           <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/about" element={<About />} />
@@ -89,20 +89,16 @@ const App = () => {
             }
           />
           <Route path="/listing/:listingId" element={<ListingDetails />} />
-     
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/blog" element={<Blog />} />
-<Route path="/blog/:slug" element={<Post />} />
+          <Route path="/blog/:slug" element={<Post />} />
           <Route path="/craft-ideas" element={<CraftIdeas />} />
+          <Route path="/thank-you" element={<ThankYou />} />
         </Routes>
       </div>
-      <Routes>
-  {/* other routes */}
-  <Route path="/thank-you" element={<ThankYou />} />
-</Routes>
+
       <Footer />
     </Router>
-    
   );
 };
 
