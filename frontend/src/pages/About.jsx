@@ -117,12 +117,12 @@ const About = () => {
       {/* Business Hours Section */}
       <div className="context-box">
       <p className="hours-text">
-              Monday: 11 AM - 4 PM<br />
-              Tuesday: 11 AM -4 PM<br />
+              Monday: Closed<br />
+              Tuesday: Closed<br />
               Wednesday: 11 AM - 4 PM<br />
               Thursday: 11 AM - 4 PM<br />
               Friday: 11 AM - 4 PM<br />
-              Saturday: 10 AM - 3 PM<br />
+              Saturday: 9 AM - 2 PM<br />
               Sunday: CLOSED 
             </p><br/>
              <h3>Where you can find us</h3>
