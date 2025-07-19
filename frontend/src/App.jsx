@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
 import Home from "./pages/Home";
-import Shop from "./pages/Shop";
+
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import VendorInfo from "./pages/VendorInfo";
@@ -53,7 +53,7 @@ const App = () => {
               <ExternalRedirect url="https://the-tangled-oak-craft-collective.square.site/s/shop" />
             }
           />
-          <Route path="/vendors" element={<VendorInfo />} /> {/* 👈 New route added here */}
+          <Route path="/vendorinfo" element={<VendorInfo />} /> {/* 👈 New route added here */}
           <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/about" element={<About />} />
