@@ -87,14 +87,14 @@ const VendorInfo = () => {
   return (
     <>
       <Helmet>
-        <title>Local Art, Crafts & Gifts | Tangled Oak + Craft Collective</title>
+        <title>About Us | The Tangled Oak + Craft Collective</title>
         <meta
           name="description"
-          content="Discover locally made artisanal goods, unique crafts, and one-of-a-kind gifts at Tangled Oak + Craft Collective in North Bay, Ontario."
+          content="Learn about The Tangled Oak + Craft Collective in North Bay, Ontario. Discover our mission to support local artisans, explore handmade goods, and connect with a creative community."
         />
         <meta
           name="keywords"
-          content="handmade crafts, local artisans, North Bay, Ontario, home decor, jewelry, pottery, woodworking, Canadian artisans"
+          content="handmade crafts, local artisans, North Bay, craft collective, Ontario handmade gifts, support local makers"
         />
       </Helmet>
 
@@ -112,8 +112,14 @@ const VendorInfo = () => {
             <div className="context-box" key={vendor.name}>
               <h2>{vendor.name}</h2>
               <p>
-                {vendor.owner && <>{vendor.owner}<br /></>}
-                {vendor.location}<br />
+                {vendor.owner && (
+                  <>
+                    {vendor.owner}
+                    <br />
+                  </>
+                )}
+                {vendor.location}
+                <br />
                 {vendor.instagram && (
                   <>
                     <a

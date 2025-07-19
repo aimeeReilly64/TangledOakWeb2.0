@@ -1,10 +1,9 @@
 // src/App.jsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // Pages
 import Home from "./pages/Home";
-
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
 import VendorInfo from "./pages/VendorInfo";
@@ -44,6 +43,11 @@ const App = () => {
     <Router>
       <Header />
 
+      {/* Add a simple navigation link so VendorInfo is accessible */}
+      <nav className="main-nav" style={{ padding: "10px", textAlign: "center" }}>
+        <Link to="/vendor-info" style={{ marginRight: "20px" }}>Our Vendors</Link>
+      </nav>
+
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -53,7 +57,8 @@ const App = () => {
               <ExternalRedirect url="https://the-tangled-oak-craft-collective.square.site/s/shop" />
             }
           />
-          <Route path="/vendorinfo" element={<VendorInfo />} /> {/* 👈 New route added here */}
+          {/* Fixed path: now SEO-friendly and matches link */}
+          <Route path="/vendor-info" element={<VendorInfo />} />
           <Route path="/product/:productId" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/about" element={<About />} />
