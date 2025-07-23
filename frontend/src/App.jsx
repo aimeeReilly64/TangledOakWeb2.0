@@ -43,11 +43,6 @@ const App = () => {
     <Router>
       <Header />
 
-      {/* Add a simple navigation link so VendorInfo is accessible */}
-      <nav className="main-nav" style={{ padding: "10px", textAlign: "center" }}>
-        <Link to="/vendor-info" style={{ marginRight: "20px" }}>Our Vendors</Link>
-      </nav>
-
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />

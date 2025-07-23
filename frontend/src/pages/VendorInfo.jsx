@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
 import "../css/styles.css";
 
 const VendorInfo = () => {
@@ -87,41 +86,36 @@ const VendorInfo = () => {
   return (
     <>
       <Helmet>
-        <title>About Us | The Tangled Oak + Craft Collective</title>
+        <title>Our Vendors | The Tangled Oak + Craft Collective</title>
         <meta
           name="description"
-          content="Learn about The Tangled Oak + Craft Collective in North Bay, Ontario. Discover our mission to support local artisans, explore handmade goods, and connect with a creative community."
+          content="Meet the vendors behind The Tangled Oak + Craft Collective. Discover local artisans from North Bay and beyond, and explore their handmade creations."
         />
         <meta
           name="keywords"
-          content="handmade crafts, local artisans, North Bay, craft collective, Ontario handmade gifts, support local makers"
+          content="handmade crafts, local artisans, North Bay, Ontario craft collective, artisan gifts, support local makers"
         />
       </Helmet>
 
       <div className="home-container">
         <div className="main-content">
           <div className="context-box">
-            <h2>Featured Vendors</h2>
+            <h2>Meet Our Makers</h2>
             <p>
-              Here's a list of the vendors we have had in the shop, a little
-              information about what they make, and where to find/contact them.
+              These are the artisans who’ve brought their creations to Tangled
+              Oak. Every piece you find here is handmade, local, and one-of-a-kind.
             </p>
           </div>
 
-          {vendors.map((vendor) => (
-            <div className="context-box" key={vendor.name}>
-              <h2>{vendor.name}</h2>
-              <p>
-                {vendor.owner && (
-                  <>
-                    {vendor.owner}
-                    <br />
-                  </>
-                )}
-                {vendor.location}
-                <br />
-                {vendor.instagram && (
-                  <>
+          {/* Grid container */}
+          <div className="vendor-grid">
+            {vendors.map((vendor) => (
+              <div className="vendor-card" key={vendor.name}>
+                <h3>{vendor.name}</h3>
+                {vendor.owner && <p><strong>Maker:</strong> {vendor.owner}</p>}
+                <p><strong>Location:</strong> {vendor.location}</p>
+                <div className="vendor-links">
+                  {vendor.instagram && (
                     <a
                       href={vendor.instagram}
                       target="_blank"
@@ -129,21 +123,20 @@ const VendorInfo = () => {
                     >
                       Instagram
                     </a>
-                    <br />
-                  </>
-                )}
-                {vendor.website && (
-                  <a
-                    href={vendor.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Website
-                  </a>
-                )}
-              </p>
-            </div>
-          ))}
+                  )}
+                  {vendor.website && (
+                    <a
+                      href={vendor.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Website
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
