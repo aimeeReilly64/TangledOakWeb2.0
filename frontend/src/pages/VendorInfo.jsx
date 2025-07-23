@@ -1,91 +1,124 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import "../css/styles.css";
+import { FacebookAuthProvider } from "firebase/auth";
 
 const VendorInfo = () => {
   const vendors = [
     {
       name: "Bohemian Heart Crafts",
-      owner: "Aimee Reilly",
+      maker: "Aimee",
       location: "North Bay, ON",
-      instagram: "https://www.instagram.com/bohemianheartcrafts/",
-      website: "https://bohemianheartcrafts.ca",
+      instagram: "https://www.instagram.com/bohemian0heart/",
+      facebook: "https://www.facebook.com/Bohemian0Heart",
+      email: "bohemian0heart@gmail.com"
     },
     {
       name: "Knit with Love by Carol",
       owner: "Carol",
-      location: "North Bay, ON",
+      location: "Callandar, ON",
+      facebook: "https://www.facebook.com/knitbycarol",
     },
     {
       name: "Peddie Pieces",
-      owner: "",
-      location: "North Bay, ON",
+      owner: "Christine",
+      location: "Callandar, ON",
+      instagram: "https://www.instagram.com/peddiepieces/",
+      facebook: "https://www.facebook.com/profile.php?id=61572681103901&sk=about",
     },
     {
       name: "The Knotty Celt",
-      owner: "",
+      owner: "Natalie",
       location: "North Bay, ON",
+      facebook: "https://www.facebook.com/profile.php?id=100089279288493",
     },
     {
       name: "Candy's Dandy Crafts",
-      owner: "",
+      owner: "Candy",
       location: "North Bay, ON",
+      instagram: "https://www.instagram.com/candysdandycrafts/",
+      facebook: "https://www.facebook.com/candysdandycrafts",
+      website: "https://candysdandycrafts.square.site/",
     },
     {
-      name: "Mos Craftworks",
-      owner: "",
+      name: "Mo's Craftworks",
+      owner: "Maureen",
       location: "North Bay, ON",
+      instagram: "https://www.instagram.com/mos_craftworks/",
+      facebook: "https://www.facebook.com/MosCraftworks",
     },
     {
       name: "Spoons & Stuff",
-      owner: "",
+      owner: "Christine",
       location: "North Bay, ON",
+      instagram: "https://www.instagram.com/spoonsandstuff/",
+      facebook: "https://www.facebook.com/spoonsandstuff",
+      other: "other places you can find."
     },
     {
       name: "Tags & Tropics",
-      owner: "",
-      location: "North Bay, ON",
+      owner: "Shawna",
+      location: "Callandar, ON",
+      instagram: "https://www.instagram.com/tagsandtropics/",
+      facebook: "https://www.facebook.com/tagsandtropics",
     },
     {
       name: "Cosmically Connected",
-      owner: "",
+      owner: "Shelby",
       location: "North Bay, ON",
+      instagram: "https://www.instagram.com/cosmicallyconnected/",
+      facebook: "https://www.facebook.com/cosmicallyconnected",
+      website: "https://cosmicallyconnected.ca/",
     },
     {
       name: "Soap & Seed",
-      owner: "",
+      owner: "Josee",
       location: "North Bay, ON",
+      instagram: "https://www.instagram.com/soapandseed/",
+      facebook: "https://www.facebook.com/soapandseed",
+      website: "https://soapandseed.ca/",
+      other: "other places you can find: -North Bay Farmers Market",
     },
     {
       name: "Knit's by Marsha Ann",
-      owner: "Marsha Ann",
+      owner: "Marsha",
       location: "North Bay, ON",
+      instagram: "https://www.instagram.com/knitsbymarshaann/",
+      facebook: "https://www.facebook.com/knitsbymarshaann",
+      other: "other places you can find: -North Bay Farmers Market",
     },
     {
       name: "Cheese & Stuffs",
-      owner: "",
+      owner: "Aura",
       location: "North Bay, ON",
+      instagram: "https://www.instagram.com/cheeseandstuffs/",
+      facebook: "https://www.facebook.com/cheeseandstuffs",
+      other: "other places you can find: -North Bay Farmers Market",
     },
     {
       name: "Muddy Paws Raw",
-      owner: "",
+      owner: "",  
       location: "North Bay, ON",
     },
     {
       name: "Top to Toe Knits",
-      owner: "",
+      owner: "Avril",
       location: "North Bay, ON",
     },
     {
       name: "She Keeps Bees",
-      owner: "",
+      owner: "Megan",
       location: "South River, ON",
+      instagram: "https://www.instagram.com/shekeepsbees/",
+      facebook: "https://www.facebook.com/shekeepsbees",
+      website: "https://shekeepsbees.ca/",
+      other: "other places you can find:",
     },
   ];
 
   return (
     <>
-      <Helmet>
+      <Helmet>  
         <title>Our Vendors | The Tangled Oak + Craft Collective</title>
         <meta
           name="description"
@@ -102,7 +135,7 @@ const VendorInfo = () => {
           <div className="context-box">
             <h2>Meet Our Makers</h2>
             <p>
-              These are the artisans who’ve brought their creations to Tangled
+              These are the artisans who’ve brought their creations to The Tangled
               Oak. Every piece you find here is handmade, local, and one-of-a-kind.
             </p>
           </div>
