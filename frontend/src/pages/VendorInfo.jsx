@@ -1,13 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import "../css/styles.css";
-import { FacebookAuthProvider } from "firebase/auth";
 
 const VendorInfo = () => {
   const vendors = [
     {
       name: "Bohemian Heart Crafts",
-      maker: "Aimee",
+      owner: "Aimee", // Changed maker → owner for consistency
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/bohemian0heart/",
       facebook: "https://www.facebook.com/Bohemian0Heart",
@@ -53,7 +52,6 @@ const VendorInfo = () => {
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/spoonsandstuff/",
       facebook: "https://www.facebook.com/spoonsandstuff",
-      other: "other places you can find."
     },
     {
       name: "Tags & Tropics",
@@ -77,7 +75,6 @@ const VendorInfo = () => {
       instagram: "https://www.instagram.com/soapandseed/",
       facebook: "https://www.facebook.com/soapandseed",
       website: "https://soapandseed.ca/",
-      other: "other places you can find: -North Bay Farmers Market",
     },
     {
       name: "Knit's by Marsha Ann",
@@ -85,7 +82,6 @@ const VendorInfo = () => {
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/knitsbymarshaann/",
       facebook: "https://www.facebook.com/knitsbymarshaann",
-      other: "other places you can find: -North Bay Farmers Market",
     },
     {
       name: "Cheese & Stuffs",
@@ -93,7 +89,6 @@ const VendorInfo = () => {
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/cheeseandstuffs/",
       facebook: "https://www.facebook.com/cheeseandstuffs",
-      other: "other places you can find: -North Bay Farmers Market",
     },
     {
       name: "Muddy Paws Raw",
@@ -112,7 +107,6 @@ const VendorInfo = () => {
       instagram: "https://www.instagram.com/shekeepsbees/",
       facebook: "https://www.facebook.com/shekeepsbees",
       website: "https://shekeepsbees.ca/",
-      other: "other places you can find:",
     },
   ];
 
@@ -135,12 +129,11 @@ const VendorInfo = () => {
           <div className="context-box">
             <h2>Meet Our Makers</h2>
             <p>
-              These are the artisans who’ve brought their creations to The Tangled
-              Oak. Every piece you find here is handmade, local, and one-of-a-kind.
+              These are the artisans who’ve brought their creations to The Tangled Oak.
+              Every piece you find here is handmade, local, and one-of-a-kind.
             </p>
           </div>
 
-          {/* Grid container */}
           <div className="vendor-grid">
             {vendors.map((vendor) => (
               <div className="vendor-card" key={vendor.name}>
@@ -149,20 +142,17 @@ const VendorInfo = () => {
                 <p><strong>Location:</strong> {vendor.location}</p>
                 <div className="vendor-links">
                   {vendor.instagram && (
-                    <a
-                      href={vendor.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={vendor.instagram} target="_blank" rel="noopener noreferrer">
                       Instagram
                     </a>
                   )}
+                  {vendor.facebook && (
+                    <a href={vendor.facebook} target="_blank" rel="noopener noreferrer">
+                      Facebook
+                    </a>
+                  )}
                   {vendor.website && (
-                    <a
-                      href={vendor.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={vendor.website} target="_blank" rel="noopener noreferrer">
                       Website
                     </a>
                   )}
