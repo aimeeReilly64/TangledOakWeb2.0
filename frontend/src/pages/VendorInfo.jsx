@@ -6,7 +6,7 @@ const VendorInfo = () => {
   const vendors = [
     {
       name: "Bohemian Heart Crafts",
-      owner: "Aimee", // Changed maker → owner for consistency
+      owner: "Aimee",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/bohemian0heart/",
       facebook: "https://www.facebook.com/Bohemian0Heart",
@@ -112,7 +112,7 @@ const VendorInfo = () => {
 
   return (
     <>
-      <Helmet>  
+      <Helmet>
         <title>Our Vendors | The Tangled Oak + Craft Collective</title>
         <meta
           name="description"
@@ -124,42 +124,42 @@ const VendorInfo = () => {
         />
       </Helmet>
 
-      <div className="home-container">
-        <div className="main-content">
-          <div className="context-box">
-            <h2>Meet Our Makers</h2>
-            <p>
-              These are the artisans who’ve brought their creations to The Tangled Oak.
-              Every piece you find here is handmade, local, and one-of-a-kind.
-            </p>
-          </div>
+      {/* Page Header */}
+      <div className="context-box">
+        <h2>Meet Our Makers</h2>
+        <p>
+          These are the artisans who’ve brought their creations to The Tangled Oak.
+          Every piece you find here is handmade, local, and one-of-a-kind.
+        </p>
+      </div>
 
-          <div className="vendor-grid">
-            {vendors.map((vendor) => (
-              <div className="vendor-card" key={vendor.name}>
-                <h3>{vendor.name}</h3>
-                {vendor.owner && <p><strong>Maker:</strong> {vendor.owner}</p>}
-                <p><strong>Location:</strong> {vendor.location}</p>
-                <div className="vendor-links">
-                  {vendor.instagram && (
-                    <a href={vendor.instagram} target="_blank" rel="noopener noreferrer">
-                      Instagram
-                    </a>
-                  )}
-                  {vendor.facebook && (
-                    <a href={vendor.facebook} target="_blank" rel="noopener noreferrer">
-                      Facebook
-                    </a>
-                  )}
-                  {vendor.website && (
-                    <a href={vendor.website} target="_blank" rel="noopener noreferrer">
-                      Website
-                    </a>
-                  )}
-                </div>
+      {/* Vendor Grid */}
+      <div className="context-box">
+        <div className="vendor-grid">
+          {vendors.map((vendor) => (
+            <div className="vendor-card" key={vendor.name}>
+              <h3>{vendor.name}</h3>
+              {vendor.owner && <p><strong>Maker:</strong> {vendor.owner}</p>}
+              <p><strong>Location:</strong> {vendor.location}</p>
+              <div className="vendor-links">
+                {vendor.instagram && (
+                  <a href={vendor.instagram} target="_blank" rel="noopener noreferrer">
+                    Instagram
+                  </a>
+                )}
+                {vendor.facebook && (
+                  <a href={vendor.facebook} target="_blank" rel="noopener noreferrer">
+                    Facebook
+                  </a>
+                )}
+                {vendor.website && (
+                  <a href={vendor.website} target="_blank" rel="noopener noreferrer">
+                    Website
+                  </a>
+                )}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </>

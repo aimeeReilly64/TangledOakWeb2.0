@@ -23,10 +23,9 @@ const Header = () => {
         <Link to="/" className="nav-link">Home</Link>
         <Link to="/about" className="nav-link">About Us</Link>
         <Link to="/blog" className="nav-link">Blog</Link>
-         <Link to="/shop" className="nav-link">Shop</Link>
-        <Link to="/vendorinfo" className="nav-link">Vendor Info</Link>
-      
-  </div>
+        <Link to="/shop" className="nav-link">Shop</Link>
+        <Link to="/vendor-info" className="nav-link">Vendor Info</Link> {/* Fixed path */}
+      </div>
     </header>
   );
 };
