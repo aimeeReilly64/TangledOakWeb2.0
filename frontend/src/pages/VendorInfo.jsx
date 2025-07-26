@@ -6,6 +6,7 @@ const VendorInfo = () => {
   const vendors = [
     {
       name: "Bohemian Heart Crafts",
+      craft: "Crochet, Leather Embroidery and Wood Crafts and Decor",
       owner: "Aimee",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/bohemian0heart/",
@@ -134,34 +135,46 @@ const VendorInfo = () => {
       </div>
 
       {/* Vendor Grid */}
-      <div className="context-box">
-        <div className="vendor-grid">
-          {vendors.map((vendor) => (
-            <div className="vendor-card" key={vendor.name}>
-              <h3>{vendor.name}</h3>
-              {vendor.owner && <p><strong>Maker:</strong> {vendor.owner}</p>}
-              <p><strong>Location:</strong> {vendor.location}</p>
-              <div className="vendor-links">
-                {vendor.instagram && (
-                  <a href={vendor.instagram} target="_blank" rel="noopener noreferrer">
-                    Instagram
-                  </a>
-                )}
-                {vendor.facebook && (
-                  <a href={vendor.facebook} target="_blank" rel="noopener noreferrer">
-                    Facebook
-                  </a>
-                )}
-                {vendor.website && (
-                  <a href={vendor.website} target="_blank" rel="noopener noreferrer">
-                    Website
-                  </a>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="vendor-card" key={vendor.name}>
+  <h3>{vendor.name}</h3>
+
+  {/* Craft/Art Type */}
+  {vendor.craft && <p><strong>Craft:</strong> {vendor.craft}</p>}
+
+  {/* Maker Name */}
+  {vendor.owner && <p><strong>Maker:</strong> {vendor.owner}</p>}
+
+  {/* Location */}
+  <p><strong>Location:</strong> {vendor.location}</p>
+
+  {/* Email */}
+  {vendor.email && (
+    <p>
+      <strong>Email:</strong>{" "}
+      <a href={`mailto:${vendor.email}`}>{vendor.email}</a>
+    </p>
+  )}
+
+  {/* Social Links */}
+  <div className="vendor-links">
+    {vendor.instagram && (
+      <a href={vendor.instagram} target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+    )}
+    {vendor.facebook && (
+      <a href={vendor.facebook} target="_blank" rel="noopener noreferrer">
+        Facebook
+      </a>
+    )}
+    {vendor.website && (
+      <a href={vendor.website} target="_blank" rel="noopener noreferrer">
+        Website
+      </a>
+    )}
+  </div>
+</div>
+
     </>
   );
 };
