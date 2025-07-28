@@ -16,6 +16,7 @@ const VendorInfo = () => {
     {
       name: "Knit with Love by Carol",
       owner: "Carol",
+      craft: "Knit and Felted Hats, Shawls, Mittens and More",
       location: "Callandar, ON",
       facebook: "https://www.facebook.com/knitbycarol",
     },
@@ -125,7 +126,6 @@ const VendorInfo = () => {
         />
       </Helmet>
 
-      {/* Page Header */}
       <div className="context-box">
         <h2>Meet Our Makers</h2>
         <p>
@@ -135,46 +135,51 @@ const VendorInfo = () => {
       </div>
 
       {/* Vendor Grid */}
-    <div className="vendor-card" key={vendor.name}>
-  <h3>{vendor.name}</h3>
+      <div className="context-box">
+        <div className="vendor-grid">
+          {vendors.map((vendor) => (
+            <div className="vendor-card" key={vendor.name}>
+              <h3>{vendor.name}</h3>
 
-  {/* Craft/Art Type */}
-  {vendor.craft && <p><strong>Craft:</strong> {vendor.craft}</p>}
+              {/* Craft/Art Type */}
+              {vendor.craft && <p><strong>Craft:</strong> {vendor.craft}</p>}
 
-  {/* Maker Name */}
-  {vendor.owner && <p><strong>Maker:</strong> {vendor.owner}</p>}
+              {/* Maker Name */}
+              {vendor.owner && <p><strong>Maker:</strong> {vendor.owner}</p>}
 
-  {/* Location */}
-  <p><strong>Location:</strong> {vendor.location}</p>
+              {/* Location */}
+              <p><strong>Location:</strong> {vendor.location}</p>
 
-  {/* Email */}
-  {vendor.email && (
-    <p>
-      <strong>Email:</strong>{" "}
-      <a href={`mailto:${vendor.email}`}>{vendor.email}</a>
-    </p>
-  )}
+              {/* Email */}
+              {vendor.email && (
+                <p>
+                  <strong>Email:</strong>{" "}
+                  <a href={`mailto:${vendor.email}`}>{vendor.email}</a>
+                </p>
+              )}
 
-  {/* Social Links */}
-  <div className="vendor-links">
-    {vendor.instagram && (
-      <a href={vendor.instagram} target="_blank" rel="noopener noreferrer">
-        Instagram
-      </a>
-    )}
-    {vendor.facebook && (
-      <a href={vendor.facebook} target="_blank" rel="noopener noreferrer">
-        Facebook
-      </a>
-    )}
-    {vendor.website && (
-      <a href={vendor.website} target="_blank" rel="noopener noreferrer">
-        Website
-      </a>
-    )}
-  </div>
-</div>
-
+              {/* Social Links */}
+              <div className="vendor-links">
+                {vendor.instagram && (
+                  <a href={vendor.instagram} target="_blank" rel="noopener noreferrer">
+                    Instagram
+                  </a>
+                )}
+                {vendor.facebook && (
+                  <a href={vendor.facebook} target="_blank" rel="noopener noreferrer">
+                    Facebook
+                  </a>
+                )}
+                {vendor.website && (
+                  <a href={vendor.website} target="_blank" rel="noopener noreferrer">
+                    Website
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 };
