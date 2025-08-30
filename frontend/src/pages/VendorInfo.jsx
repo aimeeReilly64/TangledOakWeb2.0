@@ -6,7 +6,7 @@ const VendorInfo = () => {
   const vendors = [
     {
       name: "Bohemian Heart Crafts",
-      craft: "Crochet, Leather Embroidery and Wood Crafts and Decor",
+      craft: "Crochet, Leather Embroidery, Wood Crafts and Decor",
       owner: "Aimee",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/bohemian0heart/",
@@ -23,6 +23,7 @@ const VendorInfo = () => {
     {
       name: "Peddie Pieces",
       owner: "Christine",
+      craft: "Handmade Pottery in her unique style. Mugs, Bowls, Plates, Vases and More",
       location: "Callandar, ON",
       instagram: "https://www.instagram.com/peddiepieces/",
       facebook: "https://www.facebook.com/profile.php?id=61572681103901&sk=about",
@@ -30,12 +31,14 @@ const VendorInfo = () => {
     {
       name: "The Knotty Celt",
       owner: "Natalie",
+      craft: "Handmade axes, knives and other blades. Features unique wood handles and damascus steel blades.",
       location: "North Bay, ON",
       facebook: "https://www.facebook.com/profile.php?id=100089279288493",
     },
     {
       name: "Candy's Dandy Crafts",
       owner: "Candy",
+      craft: "Indigenous Beaded Jewelry, Dreamcatchers, Home Decor and More",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/candysdandycrafts/",
       facebook: "https://www.facebook.com/candysdandycrafts",
@@ -44,6 +47,7 @@ const VendorInfo = () => {
     {
       name: "Mo's Craftworks",
       owner: "Maureen",
+      craft: "Layered paper shadow boxes and custom pieces, some with LED lighting",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/mos_craftworks/",
       facebook: "https://www.facebook.com/MosCraftworks",
@@ -51,6 +55,7 @@ const VendorInfo = () => {
     {
       name: "Spoons & Stuff",
       owner: "Christine",
+      craft: "Handmade jewelry using silverware spoons and forks",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/spoonsandstuff/",
       facebook: "https://www.facebook.com/spoonsandstuff",
@@ -58,6 +63,7 @@ const VendorInfo = () => {
     {
       name: "Tags & Tropics",
       owner: "Shawna",
+      craft: "Local photography printed for greeting cards, magnets and 8x10 prints. Custom paper gift tags and bags.",
       location: "Callandar, ON",
       instagram: "https://www.instagram.com/tagsandtropics/",
       facebook: "https://www.facebook.com/tagsandtropics",
@@ -65,6 +71,7 @@ const VendorInfo = () => {
     {
       name: "Cosmically Connected",
       owner: "Shelby",
+      craft: "Handmade crystal jewelry wire wrapped with oxidized copper and sterling silver wire.",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/cosmicallyconnected/",
       facebook: "https://www.facebook.com/cosmicallyconnected",
@@ -73,6 +80,7 @@ const VendorInfo = () => {
     {
       name: "Soap & Seed",
       owner: "Josee",
+      craft: "Handmade natural soaps, bath bombs, scrubs, lotions and more",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/soapandseed/",
       facebook: "https://www.facebook.com/soapandseed",
@@ -81,6 +89,7 @@ const VendorInfo = () => {
     {
       name: "Knit's by Marsha Ann",
       owner: "Marsha",
+      craft: "Handmade knit and crochet items including stuffed toys, bags, blankets and more",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/knitsbymarshaann/",
       facebook: "https://www.facebook.com/knitsbymarshaann",
@@ -88,23 +97,28 @@ const VendorInfo = () => {
     {
       name: "Cheese & Stuffs",
       owner: "Aura",
+      craft: "Gourmet food items including jams, jellies, sauces, spice blends and more",
       location: "North Bay, ON",
       instagram: "https://www.instagram.com/cheeseandstuffs/",
       facebook: "https://www.facebook.com/cheeseandstuffs",
     },
     {
       name: "Muddy Paws Raw",
-      owner: "",  
+      owner: "",
+      craft: "Raw pet food and treats",  
       location: "North Bay, ON",
+
     },
     {
       name: "Top to Toe Knits",
       owner: "Avril",
+      craft: "Handmade knit and baby socks and baby sweaters, and adult pullovers",
       location: "North Bay, ON",
     },
     {
       name: "She Keeps Bees",
       owner: "Megan",
+      craft: "Local Honey, Handmade natural beeswax candles, lip balms, salves and more",
       location: "South River, ON",
       instagram: "https://www.instagram.com/shekeepsbees/",
       facebook: "https://www.facebook.com/shekeepsbees",
